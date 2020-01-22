@@ -1,4 +1,4 @@
-export default class PaylineOrder {
+class PaylineOrder {
   public ref: string;
   public origin?: string;
   public country?: string;
@@ -20,3 +20,5 @@ export default class PaylineOrder {
   public orderExtended?: string;
   public orderOTA?: string;
 }
+
+export {PaylineOrder};

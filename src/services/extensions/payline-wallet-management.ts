@@ -1,19 +1,19 @@
-import PaylineUtils from "../payline-utils";
-import Payline from "../payline";
-import PaylineUpdateWalletResponse from "../../models/responses/payline-update-wallet-response";
-import PaylineCreateWalletResponse from "../../models/responses/payline-create-wallet-response";
-import PaylineDoImmediateWalletPaymentResponse from "../../models/responses/payline-do-immediate-wallet-payment-response";
-import PaylineDoScheduledWalletPaymentResponse from "../../models/responses/payline-do-scheduled-wallet-payment-response";
-import PaylineUpdateWalletRequest from "../../models/requests/payline-update-wallet-request";
-import PaylineCreateWalletRequest from "../../models/requests/payline-create-wallet-request";
-import PaylineDoImmediateWalletPaymentRequest from "../../models/requests/payline-do-immediate-wallet-payment-request";
-import PaylineDoScheduledWalletPaymentRequest from "../../models/requests/payline-do-scheduled-wallet-payment-request";
 import cryptoRandomString from "crypto-random-string";
+import {Payline} from "../payline";
+import {PaylineUpdateWalletRequest} from "../../models/requests/payline-update-wallet-request";
+import {PaylineUpdateWalletResponse} from "../../models/responses/payline-update-wallet-response";
+import {PaylineUtils} from "../payline-utils";
+import {PaylineCreateWalletRequest} from "../../models/requests/payline-create-wallet-request";
+import {PaylineCreateWalletResponse} from "../../models/responses/payline-create-wallet-response";
+import {PaylineDoImmediateWalletPaymentRequest} from "../../models/requests/payline-do-immediate-wallet-payment-request";
+import {PaylineDoImmediateWalletPaymentResponse} from "../../models/responses/payline-do-immediate-wallet-payment-response";
+import {PaylineDoScheduledWalletPaymentRequest} from "../../models/requests/payline-do-scheduled-wallet-payment-request";
+import {PaylineDoScheduledWalletPaymentResponse} from "../../models/responses/payline-do-scheduled-wallet-payment-response";
 
 /**
  * Manage payline wallets
  */
-export default class PaylineWalletManagement {
+class PaylineWalletManagement {
   constructor(private readonly payline: Payline) {
   }
 
@@ -55,3 +55,5 @@ export default class PaylineWalletManagement {
   }
 
 }
+
+export {PaylineWalletManagement};

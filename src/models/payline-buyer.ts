@@ -1,6 +1,6 @@
-import PaylineAddress from "./payline-address";
+import {PaylineAddress} from "./payline-address";
 
-export default class PaylineBuyer {
+class PaylineBuyer {
   public title?: string;
   public lastName?: string;
   public firstName?: string;
@@ -33,3 +33,5 @@ export default class PaylineBuyer {
   public buyerExtended?: string;
   public merchantAuthentication?: any;
 }
+
+export {PaylineBuyer}

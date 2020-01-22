@@ -1,15 +1,15 @@
 import {PaylineMode} from "../payline-mode";
-import PaylineAction from "../payline-action";
 import {PaylineCurrency} from "../payline-currency";
-import PaylineBuyer from "../payline-buyer";
-import PaylinePayment from "../payline-payment";
-import PaylineOrder from "../payline-order";
-import PaylineUtils from "../../services/payline-utils";
 import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import PaylineAuthentication3DS from "../payline-authentication-3ds";
-import PaylineBaseRequest from "./payline-base-request";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
+import {PaylineBaseRequest} from "./payline-base-request";
+import {PaylineAction} from "../payline-action";
+import {PaylineBuyer} from "../payline-buyer";
+import {PaylineOrder} from "../payline-order";
+import {PaylineUtils} from "../../services/payline-utils";
+import {PaylinePayment} from "../payline-payment";
 
-export default class PaylineDoImmediateWalletPaymentRequest extends PaylineBaseRequest {
+class PaylineDoImmediateWalletPaymentRequest extends PaylineBaseRequest {
   public walletId: string;
   public buyer: PaylineBuyer;
   public payment: PaylinePayment;
@@ -75,3 +75,5 @@ export default class PaylineDoImmediateWalletPaymentRequest extends PaylineBaseR
     return this;
   }
 }
+
+export {PaylineDoImmediateWalletPaymentRequest};

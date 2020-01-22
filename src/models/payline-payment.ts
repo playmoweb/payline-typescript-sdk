@@ -1,6 +1,6 @@
 import {PaylineCurrency} from "./payline-currency";
 
-export default class PaylinePayment {
+class PaylinePayment {
   public amount?: string | number;
   public currency: PaylineCurrency;
   public action: number;
@@ -13,3 +13,5 @@ export default class PaylinePayment {
   public registrationToken?: string;
   public cumulatedAmount?: string;
 }
+
+export {PaylinePayment};

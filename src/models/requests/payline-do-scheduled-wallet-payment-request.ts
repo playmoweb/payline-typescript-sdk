@@ -1,15 +1,13 @@
 import {PaylineMode} from "../payline-mode";
-import PaylineAction from "../payline-action";
 import {PaylineCurrency} from "../payline-currency";
-import PaylineBuyer from "../payline-buyer";
-import PaylinePayment from "../payline-payment";
-import PaylineOrder from "../payline-order";
-import PaylineUtils from "../../services/payline-utils";
 import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import PaylineAuthentication3DS from "../payline-authentication-3ds";
-import PaylineBaseRequest from "./payline-base-request";
+import {PaylineOrder} from "../payline-order";
+import {PaylineBaseRequest} from "./payline-base-request";
+import {PaylineUtils} from "../../services/payline-utils";
+import {PaylineAction} from "../payline-action";
+import {PaylinePayment} from "../payline-payment";
 
-export default class PaylineDoScheduledWalletPaymentRequest extends PaylineBaseRequest {
+class PaylineDoScheduledWalletPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;
   public orderRef?: string;
   public orderDate?: string;
@@ -65,3 +63,5 @@ export default class PaylineDoScheduledWalletPaymentRequest extends PaylineBaseR
     return this;
   }
 }
+
+export {PaylineDoScheduledWalletPaymentRequest};

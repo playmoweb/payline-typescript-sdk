@@ -1,4 +1,4 @@
-export default class PaylineThreeDSInfo {
+class PaylineThreeDSInfo {
   public challengeInd?: string;
   public threeDSReqPriorAuthData?: string;
   public threeDSReqPriorAuthMethod?: string;
@@ -9,3 +9,5 @@ export default class PaylineThreeDSInfo {
   public threeDSMethodResult?: string;
   public challengeWindowSize?: string;
 }
+
+export {PaylineThreeDSInfo};

@@ -1,6 +1,6 @@
-import PaylineCard from "./payline-card";
+import {PaylineCard} from "./payline-card";
 
-export default class PaylineWallet {
+class PaylineWallet {
   public card: PaylineCard;
   public lastName?: string;
   public firstName?: string;
@@ -11,3 +11,5 @@ export default class PaylineWallet {
   public cardStatus?: string;
   public cardBrand?: string;
 }
+
+export {PaylineWallet};

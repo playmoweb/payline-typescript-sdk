@@ -1,4 +1,4 @@
-export default class PaylineResultResponse {
+class PaylineResultResponse {
   public code: string;
   public shortMessage?: string;
   public longMessage?: string;
@@ -9,3 +9,5 @@ export default class PaylineResultResponse {
     this.code = code;
   }
 }
+
+export {PaylineResultResponse};

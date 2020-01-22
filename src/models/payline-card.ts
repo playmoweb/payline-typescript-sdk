@@ -1,4 +1,4 @@
-export default class PaylineCard {
+class PaylineCard {
   public encryptionKeyId?: string;
   public encryptedData?: string;
   public number?: string;
@@ -12,3 +12,5 @@ export default class PaylineCard {
   public token?: string;
   public paymentData?: any;
 }
+
+export {PaylineCard}

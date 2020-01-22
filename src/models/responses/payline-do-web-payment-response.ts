@@ -1,10 +1,11 @@
-import PaylineResultResponse from "./payline-result-response";
+import {PaylineBaseResponse} from "./payline-base-response";
 
-export default class PaylineDoWebPaymentResponse {
-  public result: PaylineResultResponse;
+class PaylineDoWebPaymentResponse extends PaylineBaseResponse {
   public token: string;
   public redirectURL: string;
   public stepCode?: string;
   public reqCode?: string;
   public method?: string;
 }
+
+export {PaylineDoWebPaymentResponse};

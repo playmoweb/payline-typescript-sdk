@@ -1,9 +1,10 @@
-import PaylineResultResponse from "./payline-result-response";
-import PaylineTransaction from "../payline-transaction";
-import PaylineAuthorization from "../payline-authorization";
+import {PaylineTransaction} from "../payline-transaction";
+import {PaylineAuthorization} from "../payline-authorization";
+import {PaylineBaseResponse} from "./payline-base-response";
 
-export default class PaylineDoImmediateWalletPaymentResponse {
-  public result: PaylineResultResponse;
+class PaylineDoImmediateWalletPaymentResponse extends PaylineBaseResponse {
   public transaction: PaylineTransaction;
   public authorization: PaylineAuthorization;
 }
+
+export {PaylineDoImmediateWalletPaymentResponse};

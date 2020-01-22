@@ -1,15 +1,16 @@
-import PaylineResultResponse from "./payline-result-response";
-import PaylineTransaction from "../payline-transaction";
-import PaylineAuthorization from "../payline-authorization";
-import PaylinePayment from "../payline-payment";
-import PaylineAuthentication3DS from "../payline-authentication-3ds";
-import PaylineCardOut from "../payline-card-out";
-import PaylineExtendedCardType from "../payline-extended-card-type";
-import PaylineOrder from "../payline-order";
-import PaylineWallet from "../payline-wallet";
-import PaylineBuyer from "../payline-buyer";
+import {PaylineBaseResponse} from "./payline-base-response";
+import {PaylineResultResponse} from "./payline-result-response";
+import {PaylineTransaction} from "../payline-transaction";
+import {PaylinePayment} from "../payline-payment";
+import {PaylineAuthorization} from "../payline-authorization";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
+import {PaylineCardOut} from "../payline-card-out";
+import {PaylineExtendedCardType} from "../payline-extended-card-type";
+import {PaylineOrder} from "../payline-order";
+import {PaylineBuyer} from "../payline-buyer";
+import {PaylineWallet} from "../payline-wallet";
 
-export default class PaylineGetWebPaymentDetailsResponse {
+class PaylineGetWebPaymentDetailsResponse extends PaylineBaseResponse {
   public contractNumber: string;
   public result: PaylineResultResponse;
   public transaction: PaylineTransaction;
@@ -32,3 +33,5 @@ export default class PaylineGetWebPaymentDetailsResponse {
   public subMerchant?: {};
   public buyer?: PaylineBuyer;
 }
+
+export {PaylineGetWebPaymentDetailsResponse};

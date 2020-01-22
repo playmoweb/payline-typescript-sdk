@@ -1,7 +1,7 @@
 import * as soap from "soap";
 import {IOptions} from "soap/lib/types";
 import * as path from "path";
-import ConsolePaylineLogger, {PaylineLogger} from "./extensions/payline-logger";
+import {ConsolePaylineLogger, PaylineLogger} from "./extensions/payline-logger";
 
 const DEFAULT_HOMOLOGATION_WSDL = path.join(__dirname, "../config/wsdls/homologation/WebPaymentAPI.xml");
 const DEFAULT_PRODUCTION_WSDL = path.join(__dirname, "../config/wsdls/production/WebPaymentAPI.xml");
@@ -9,7 +9,7 @@ const DEFAULT_PRODUCTION_WSDL = path.join(__dirname, "../config/wsdls/production
 /**
  * Payline service
  */
-export default class Payline {
+class Payline {
   private readonly merchantId: any;
   private readonly accessKey: any;
   private contractNumber: any;
@@ -73,3 +73,5 @@ export default class Payline {
   }
 
 }
+
+export {Payline};

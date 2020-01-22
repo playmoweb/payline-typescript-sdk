@@ -1,4 +1,4 @@
-export default class PaylineAddress {
+class PaylineAddress {
   public title?: string;
   public name?: string;
   public firstName?: string;
@@ -13,3 +13,5 @@ export default class PaylineAddress {
   public county?: string;
   public phoneType?: string;
 }
+
+export {PaylineAddress};

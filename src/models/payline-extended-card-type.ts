@@ -1,4 +1,4 @@
-export default class PaylineExtendedCardType {
+class PaylineExtendedCardType {
   public country?: string; // FRA isocode
   public isCvd?: string; // Y
   public bank?: string; // LCL
@@ -6,3 +6,5 @@ export default class PaylineExtendedCardType {
   public network?: string; // mastercard
   public product?: string; // gold / premier
 }
+
+export {PaylineExtendedCardType};

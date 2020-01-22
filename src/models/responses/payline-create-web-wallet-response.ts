@@ -1,7 +1,8 @@
-import PaylineResultResponse from "./payline-result-response";
+import {PaylineBaseResponse} from "./payline-base-response";
 
-export default class PaylineCreateWebWalletResponse {
-  public result: PaylineResultResponse;
+class PaylineCreateWebWalletResponse extends PaylineBaseResponse {
   public token: string;
   public redirectURL: string;
 }
+
+export {PaylineCreateWebWalletResponse};

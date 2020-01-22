@@ -4,7 +4,7 @@ import * as moment from "moment-timezone";
 /**
  * Payline helpers
  */
-export default class PaylineUtils {
+class PaylineUtils {
   public static timezone = "Europe/Paris";
 
   /**
@@ -69,3 +69,5 @@ export default class PaylineUtils {
       .catch(err => PaylineUtils.parseErrors(err));
   }
 }
+
+export {PaylineUtils};

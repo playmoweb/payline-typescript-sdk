@@ -1,6 +1,6 @@
-import PaylineBaseRequest from "./payline-base-request";
+import {PaylineBaseRequest} from "./payline-base-request";
 
-export default class PaylineGetWebPaymentDetailsRequest extends PaylineBaseRequest{
+ class PaylineGetWebPaymentDetailsRequest extends PaylineBaseRequest {
   public token: string;
 
   constructor(token: string) {
@@ -8,3 +8,5 @@ export default class PaylineGetWebPaymentDetailsRequest extends PaylineBaseReque
     this.token = token;
   }
 }
+
+export {PaylineGetWebPaymentDetailsRequest};

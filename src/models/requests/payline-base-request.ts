@@ -1,3 +1,5 @@
-export default abstract class PaylineBaseRequest {
+abstract class PaylineBaseRequest {
   public version: number = 20;
 }
+
+export {PaylineBaseRequest}

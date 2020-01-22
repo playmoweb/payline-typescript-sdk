@@ -1,16 +1,16 @@
 import {PaylineMode} from "../payline-mode";
-import PaylineAction from "../payline-action";
 import {PaylineCurrency} from "../payline-currency";
-import PaylineBuyer from "../payline-buyer";
-import PaylinePayment from "../payline-payment";
-import PaylineOrder from "../payline-order";
-import PaylineUtils from "../../services/payline-utils";
 import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import PaylineBaseRequest from "./payline-base-request";
-import PaylineOwner from "../payline-owner";
-import PaylineThreeDSInfo from "../payline-three-ds-info";
+import {PaylineBaseRequest} from "./payline-base-request";
+import {PaylineOrder} from "../payline-order";
+import {PaylineBuyer} from "../payline-buyer";
+import {PaylineOwner} from "../payline-owner";
+import {PaylineThreeDSInfo} from "../payline-three-ds-info";
+import {PaylineUtils} from "../../services/payline-utils";
+import {PaylineAction} from "../payline-action";
+import {PaylinePayment} from "../payline-payment";
 
-export default class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
+class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;
   public returnURL: string;
   public cancelURL: string;
@@ -96,3 +96,5 @@ export default class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     return this;
   }
 }
+
+export {PaylineDoWebPaymentRequest};

@@ -1,15 +1,15 @@
-import PaylineUtils from "../payline-utils";
-import Payline from "../payline";
-import PaylineGetWebPaymentDetailsRequest from "../../models/requests/payline-get-web-payment-details-request";
-import PaylineGetWebPaymentDetailsResponse from "../../models/responses/payline-get-web-payment-details-response";
-import PaylineDoWebPaymentRequest from "../../models/requests/payline-do-web-payment-request";
-import PaylineDoWebPaymentResponse from "../../models/responses/payline-do-web-payment-response";
-import PaylineCreateWebWalletRequest from "../../models/requests/payline-create-web-wallet-request";
-import PaylineCreateWebWalletResponse from "../../models/responses/payline-create-web-wallet-response";
-import PaylineManageWebWalletResponse from "../../models/responses/payline-manage-web-wallet-response";
-import PaylineManageWebWalletRequest from "../../models/requests/payline-manage-web-wallet-request";
+import {PaylineGetWebPaymentDetailsRequest} from "../../models/requests/payline-get-web-payment-details-request";
+import {PaylineGetWebPaymentDetailsResponse} from "../../models/responses/payline-get-web-payment-details-response";
+import {PaylineCreateWebWalletRequest} from "../../models/requests/payline-create-web-wallet-request";
+import {PaylineCreateWebWalletResponse} from "../../models/responses/payline-create-web-wallet-response";
+import {PaylineManageWebWalletResponse} from "../../models/responses/payline-manage-web-wallet-response";
+import {PaylineManageWebWalletRequest} from "../../models/requests/payline-manage-web-wallet-request";
+import {PaylineDoWebPaymentRequest} from "../../models/requests/payline-do-web-payment-request";
+import {Payline} from "../payline";
+import {PaylineDoWebPaymentResponse} from "../../models/responses/payline-do-web-payment-response";
+import {PaylineUtils} from "../payline-utils";
 
-export default class PaylineWeb {
+class PaylineWeb {
   constructor(private readonly payline: Payline) {
   }
 
@@ -49,3 +49,5 @@ export default class PaylineWeb {
   }
 
 }
+
+export {PaylineWeb};

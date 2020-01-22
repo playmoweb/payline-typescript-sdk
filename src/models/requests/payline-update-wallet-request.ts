@@ -1,11 +1,11 @@
-import PaylineCard from "../payline-card";
-import PaylineBaseRequest from "./payline-base-request";
-import PaylineWallet from "../payline-wallet";
-import PaylineBuyer from "../payline-buyer";
-import PaylineOwner from "../payline-owner";
-import PaylineAuthentication3DS from "../payline-authentication-3ds";
+import {PaylineBaseRequest} from "./payline-base-request";
+import {PaylineBuyer} from "../payline-buyer";
+import {PaylineOwner} from "../payline-owner";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
+import {PaylineCard} from "../payline-card";
+import {PaylineWallet} from "../payline-wallet";
 
-export default class PaylineUpdateWalletRequest extends PaylineBaseRequest {
+class PaylineUpdateWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;
   public wallet: Partial<PaylineWallet>;
   public buyer?: PaylineBuyer;
@@ -29,3 +29,5 @@ export default class PaylineUpdateWalletRequest extends PaylineBaseRequest {
     return this;
   }
 }
+
+export {PaylineUpdateWalletRequest};

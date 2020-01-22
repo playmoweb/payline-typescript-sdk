@@ -1,4 +1,4 @@
-export default class PaylineAuthentication3DS {
+class PaylineAuthentication3DS {
   public md?: string;
   public pares?: string;
   public xid?: string;
@@ -12,3 +12,5 @@ export default class PaylineAuthentication3DS {
   public resultContainer?: string;
   public authenticationResult?: string;
 }
+
+export {PaylineAuthentication3DS};

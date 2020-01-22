@@ -1,11 +1,11 @@
-export interface PaylineLogger {
+interface PaylineLogger {
   log(...data: any): void;
 }
 
 /**
  * Default console logger
  */
-export default class ConsolePaylineLogger implements PaylineLogger {
+class ConsolePaylineLogger implements PaylineLogger {
   private debugMode: boolean;
 
   constructor(debugMode: boolean) {
@@ -21,3 +21,5 @@ export default class ConsolePaylineLogger implements PaylineLogger {
     }
   }
 }
+
+export {PaylineLogger, ConsolePaylineLogger};

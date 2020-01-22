@@ -1,4 +1,4 @@
-export default class PaylineCardOut {
+class PaylineCardOut {
   public number?: string;
   public type?: string;
   public expirationDate?: string;
@@ -6,3 +6,5 @@ export default class PaylineCardOut {
   public token?: string;
   public panType?: string;
 }
+
+export {PaylineCardOut}

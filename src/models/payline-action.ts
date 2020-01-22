@@ -1,4 +1,4 @@
-export default class PaylineAction {
+class PaylineAction {
   public readonly code: number;
   public readonly restCode: string;
 
@@ -32,3 +32,5 @@ export default class PaylineAction {
   public static readonly Refund = new PaylineAction(421, "REFUND");
   public static readonly Credit = new PaylineAction(422, "CREDIT");
 }
+
+export {PaylineAction};

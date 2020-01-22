@@ -1,4 +1,4 @@
-export class PaylineDeliveryMode {
+class PaylineDeliveryMode {
   public readonly code: number;
   public readonly description: string;
   public readonly forTransaction3DSv2: boolean = false;
@@ -25,3 +25,5 @@ export class PaylineDeliveryMode {
   public static readonly Other = new PaylineDeliveryMode(999, "Other", true, "OTHER");
 
 }
+
+export {PaylineDeliveryMode};

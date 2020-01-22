@@ -1,6 +1,6 @@
-import PaylinePayment from "./payline-payment";
+import {PaylinePayment} from "./payline-payment";
 
-export default class PaylineTransaction {
+class PaylineTransaction {
   public id: string;
   public date: string;
   public isDuplicated?: string;
@@ -23,3 +23,5 @@ export default class PaylineTransaction {
   public card?: any;
   public extendedCard?: any;
 }
+
+export {PaylineTransaction};

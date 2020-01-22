@@ -1,8 +1,8 @@
-import PaylineBuyer from "../payline-buyer";
-import PaylineOwner from "../payline-owner";
-import PaylineBaseRequest from "./payline-base-request";
+import {PaylineBuyer} from "../payline-buyer";
+import {PaylineOwner} from "../payline-owner";
+import {PaylineBaseRequest} from "./payline-base-request";
 
-export default class PaylineManageWebWalletRequest extends PaylineBaseRequest {
+class PaylineManageWebWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;
   public selectedContractList?: string[];
   public updatePersonalDetails?: string;
@@ -29,5 +29,6 @@ export default class PaylineManageWebWalletRequest extends PaylineBaseRequest {
     this.contractNumber = contractNumber;
     return this;
   }
-
 }
+
+export {PaylineManageWebWalletRequest};

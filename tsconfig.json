@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/src",
     "lib": [
@@ -12,9 +11,6 @@
     "outDir": "dist",
     "sourceMap": true,
     "target": "es6",
-    "types": [
-      "reflect-metadata"
-    ],
     "typeRoots": [
       "./node_modules/@types"
     ],
