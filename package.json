@@ -1,0 +1,45 @@
+{
+  "name": "payline-typescript-sdk",
+  "version": "1.0.0",
+  "description": "Payline Typescript SDK",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "Thibaud Giovannetti",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "tsc && npm run copy-wsdl",
+    "link-all": "npm run build && npm link",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "copy-wsdl": "copyfiles -u 1 './src/config/wsdls/**' ./dist"
+  },
+  "keywords": [
+    "payline",
+    "nodejs",
+    "typescript",
+    "payment",
+    "sdk"
+  ],
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "crypto-random-string": "3.1.0",
+    "moment-timezone": "0.5.27",
+    "soap": "0.30.0"
+  },
+  "devDependencies": {
+    "@types/chai": "4.1.7",
+    "@types/mocha": "2.2.48",
+    "@types/moment-timezone": "0.5.12",
+    "@types/node": "13.1.8",
+    "chai": "4.2.0",
+    "copyfiles": "2.2.0",
+    "mocha": "6.1.4",
+    "reflect-metadata": "0.1.13",
+    "ts-node": "8.6.2",
+    "tslint": "5.18.0",
+    "typescript": "3.7.5"
+  },
+  "private": false
+}

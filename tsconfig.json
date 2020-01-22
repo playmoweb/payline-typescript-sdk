@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./buildcache/src",
+    "lib": [
+      "es2018"
+    ],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "allowJs": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "target": "es6",
+    "types": [
+      "reflect-metadata"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "compileOnSave": true,
+  "include": ["src"],
+  "exclude": ["node_modules", "**/tests/*"]
+}
