@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Thibaud Giovannetti",
+  "repository": {
+    "url": "https://github.com/playmoweb/payline-typescript-sdk"
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "tsc && npm run copy-wsdl",
