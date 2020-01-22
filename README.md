@@ -5,7 +5,7 @@
 ## Installation
 
 ```shell script
-npm i --save payline-typescript-sdk
+npm i --save @playmoweb/payline-typescript-sdk
 ```
 
 ## Basic usage

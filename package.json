@@ -1,5 +1,5 @@
 {
-  "name": "payline-typescript-sdk",
+  "name": "@playmoweb/payline-typescript-sdk",
   "version": "1.0.0",
   "description": "Payline Typescript SDK",
   "main": "dist/index.js",
