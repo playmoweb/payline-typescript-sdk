@@ -2,6 +2,15 @@ export * from "./models/requests";
 export * from "./models/responses";
 export * from "./models";
 
-export {Payline} from "./services/payline";
-export {PaylineWeb} from "./services/extensions/payline-web";
-export {PaylineWalletManagement} from "./services/extensions/payline-wallet-management";
+import {Payline as InternalPayline} from "./services/payline";
+import {PaylineWeb as InternalPaylineWeb} from "./services/extensions/payline-web";
+import {PaylineWalletManagement as InternalPaylineWalletManagement} from "./services/extensions/payline-wallet-management";
+
+export const Payline = InternalPayline;
+export type Payline = InternalPayline;
+
+export const PaylineWeb = InternalPaylineWeb;
+export type PaylineWeb = InternalPaylineWeb;
+
+export const PaylineWalletManagement = InternalPaylineWalletManagement;
+export type PaylineWalletManagement = InternalPaylineWalletManagement;

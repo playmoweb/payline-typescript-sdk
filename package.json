@@ -1,6 +1,6 @@
 {
   "name": "@playmoweb/payline-typescript-sdk",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Payline Typescript SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "tsc && npm run copy-wsdl",
+    "build": "tsc -p . && npm run copy-wsdl",
     "link-all": "npm run build && npm link",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
     "copy-wsdl": "copyfiles -u 1 './src/config/wsdls/**' ./dist"

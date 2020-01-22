@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/src",
     "lib": [
