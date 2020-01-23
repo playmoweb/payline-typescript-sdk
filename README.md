@@ -50,5 +50,11 @@ const paylineWalletService = new PaylineWalletManagement(paylineConfig);
 
 ## Development
 
-For now only the `doWebPayment()` and `getWebPaymentDetails()` have been tested.
+Tested endpoints :
+
+```
+doWebPayment()
+getWebPaymentDetails()
+manageWebWallet()
+```
 
