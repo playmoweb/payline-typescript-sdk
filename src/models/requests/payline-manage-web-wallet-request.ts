@@ -20,9 +20,10 @@ class PaylineManageWebWalletRequest extends PaylineBaseRequest {
   public merchantName?: string;
   public threeDSInfo?: any;
 
-  constructor() {
+  constructor(walletId: string) {
     super();
     this.buyer = new PaylineBuyer();
+    this.buyer.walletId = walletId;
   }
 
   public changeContractNumber(contractNumber: string): this {
