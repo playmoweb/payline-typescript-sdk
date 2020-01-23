@@ -4,8 +4,8 @@ import {PaylineBaseRequest} from "./payline-base-request";
 
 class PaylineManageWebWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;
-  public selectedContractList?: string[];
-  public updatePersonalDetails?: string;
+  public selectedContractList?: [{ selectedContract: string }];
+  public updatePersonalDetails?: string = "0";
   public buyer: PaylineBuyer;
   public owner?: PaylineOwner;
   public languageCode?: string;
@@ -20,13 +20,33 @@ class PaylineManageWebWalletRequest extends PaylineBaseRequest {
   public merchantName?: string;
   public threeDSInfo?: any;
 
-  constructor(buyer: PaylineBuyer, returnURL: string, cancelUrl: string) {
+  constructor() {
     super();
-    this.buyer = buyer;
+    this.buyer = new PaylineBuyer();
   }
 
   public changeContractNumber(contractNumber: string): this {
     this.contractNumber = contractNumber;
+    this.selectedContractList = [{selectedContract: contractNumber}];
+    return this;
+  }
+
+  public setClientDetails(email: string, firstName: string, lastName: string): this {
+    this.buyer.email = email;
+    this.buyer.firstName = firstName;
+    this.buyer.lastName = lastName;
+    return this;
+  }
+
+  public setCallbackUrls(returnURL: string, cancelURL: string, notificationURL: string = null): this {
+    this.returnURL = returnURL;
+    this.cancelURL = cancelURL;
+    this.notificationURL = notificationURL;
+    return this;
+  }
+
+  public allowPersonalDetailsUpdate(allow: boolean): this {
+    this.updatePersonalDetails = allow ? "1" : "0";
     return this;
   }
 }
