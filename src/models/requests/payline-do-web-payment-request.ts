@@ -9,6 +9,7 @@ import {PaylineThreeDSInfo} from "../payline-three-ds-info";
 import {PaylineUtils} from "../../services/payline-utils";
 import {PaylineAction} from "../payline-action";
 import {PaylinePayment} from "../payline-payment";
+import {PaylineOrderDetail} from "../payline-order-detail";
 
 class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;
@@ -89,7 +90,7 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     return this;
   }
 
-  public setOrderDetails(deliveryMode: PaylineDeliveryMode, country: string = "fr", details: any = {}): this {
+  public setOrderDetails(deliveryMode: PaylineDeliveryMode, country: string = "fr", details: PaylineOrderDetail[] = null): this {
     this.order.deliveryMode = deliveryMode.code;
     this.order.country = country;
     this.order.details = details;

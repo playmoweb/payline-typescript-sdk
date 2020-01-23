@@ -1,3 +1,5 @@
+import {PaylineOrderDetail} from "./payline-order-detail";
+
 class PaylineOrder {
   public ref: string;
   public origin?: string;
@@ -6,7 +8,7 @@ class PaylineOrder {
   public amount: string | number;
   public currency: string | number;
   public date: string;
-  public details?: any;
+  public details?: PaylineOrderDetail[];
   public deliveryTime?: string;
   public deliveryMode?: number;
   public deliveryExpectedDate?: string;

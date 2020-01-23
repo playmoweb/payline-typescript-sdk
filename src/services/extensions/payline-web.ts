@@ -1,12 +1,17 @@
-import {PaylineGetWebPaymentDetailsRequest} from "../../models/requests/payline-get-web-payment-details-request";
-import {PaylineGetWebPaymentDetailsResponse} from "../../models/responses/payline-get-web-payment-details-response";
-import {PaylineCreateWebWalletRequest} from "../../models/requests/payline-create-web-wallet-request";
-import {PaylineCreateWebWalletResponse} from "../../models/responses/payline-create-web-wallet-response";
-import {PaylineManageWebWalletResponse} from "../../models/responses/payline-manage-web-wallet-response";
-import {PaylineManageWebWalletRequest} from "../../models/requests/payline-manage-web-wallet-request";
-import {PaylineDoWebPaymentRequest} from "../../models/requests/payline-do-web-payment-request";
+import {
+  PaylineGetWebPaymentDetailsRequest,
+  PaylineCreateWebWalletRequest,
+  PaylineManageWebWalletRequest,
+  PaylineDoWebPaymentRequest
+} from "../../models/requests";
+import {
+  PaylineGetWebPaymentDetailsResponse,
+  PaylineDoWebPaymentResponse,
+  PaylineManageWebWalletResponse,
+  PaylineCreateWebWalletResponse
+
+} from "../../models/responses";
 import {Payline} from "../payline";
-import {PaylineDoWebPaymentResponse} from "../../models/responses/payline-do-web-payment-response";
 import {PaylineUtils} from "../payline-utils";
 
 class PaylineWeb {
