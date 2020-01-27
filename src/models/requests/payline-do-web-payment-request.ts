@@ -46,7 +46,9 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
 
   public changeContractNumber(contractNumber: string): this {
     this.payment.contractNumber = contractNumber;
-    this.selectedContractList = [{selectedContract: contractNumber}];
+    if (!this.selectedContractList || this.selectedContractList.length === 0) {
+      this.selectedContractList = [{selectedContract: contractNumber}];
+    }
     return this;
   }
 

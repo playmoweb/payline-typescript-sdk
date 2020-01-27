@@ -28,7 +28,9 @@ class PaylineManageWebWalletRequest extends PaylineBaseRequest {
 
   public changeContractNumber(contractNumber: string): this {
     this.contractNumber = contractNumber;
-    this.selectedContractList = [{selectedContract: contractNumber}];
+    if (!this.selectedContractList || this.selectedContractList.length === 0) {
+      this.selectedContractList = [{selectedContract: contractNumber}];
+    }
     return this;
   }
 

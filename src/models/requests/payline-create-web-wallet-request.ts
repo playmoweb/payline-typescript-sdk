@@ -25,9 +25,17 @@ class PaylineCreateWebWalletRequest extends PaylineBaseRequest {
 
   public changeContractNumber(contractNumber: string): this {
     this.contractNumber = contractNumber;
-    this.selectedContractList = [{selectedContract: contractNumber}];
+    if (!this.selectedContractList || this.selectedContractList.length === 0) {
+      this.selectedContractList = [{selectedContract: contractNumber}];
+    }
     return this;
   }
+
+  public setSelectedContracts(contractsNumber: string[]): this {
+    this.selectedContractList = (contractsNumber || []).map(selectedContract => ({selectedContract}));
+    return this;
+  }
+
 
   public setClientDetails(email: string, firstName: string, lastName: string): this {
     this.buyer.email = email;
@@ -40,6 +48,11 @@ class PaylineCreateWebWalletRequest extends PaylineBaseRequest {
     this.returnURL = returnURL;
     this.cancelURL = cancelURL;
     this.notificationURL = notificationURL;
+    return this;
+  }
+
+  public setCustomPageCode(code: string): this {
+    this.customPaymentPageCode = code;
     return this;
   }
 }
