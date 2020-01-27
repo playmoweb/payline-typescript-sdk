@@ -8,7 +8,7 @@ class PaylineTransaction {
   public fraudResult?: string;
   public fraudResultDetails?: any;
   public explanation?: string;
-  public threeDSecure?: string;
+  public threeDSecure?: string; // Y / N
   public softDescriptor?: string;
   public score?: any;
   public externalWalletType?: string;

@@ -14,3 +14,4 @@ export {PaylineThreeDSInfo} from "./payline-three-ds-info";
 export {PaylinePayment} from "./payline-payment";
 export {PaylineOwner} from "./payline-owner";
 export {PaylineOrder} from "./payline-order";
+export {PaylineOrderDetail} from "./payline-order-detail";

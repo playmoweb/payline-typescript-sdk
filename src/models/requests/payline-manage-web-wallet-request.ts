@@ -4,7 +4,7 @@ import {PaylineBaseRequest} from "./payline-base-request";
 
 class PaylineManageWebWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;
-  public selectedContractList?: [{ selectedContract: string }];
+  public selectedContractList?: { selectedContract: string }[];
   public updatePersonalDetails?: string = "0";
   public buyer: PaylineBuyer;
   public owner?: PaylineOwner;
@@ -48,6 +48,16 @@ class PaylineManageWebWalletRequest extends PaylineBaseRequest {
 
   public allowPersonalDetailsUpdate(allow: boolean): this {
     this.updatePersonalDetails = allow ? "1" : "0";
+    return this;
+  }
+
+  public setSelectedContracts(contractsNumber: string[]): this {
+    this.selectedContractList = (contractsNumber || []).map(selectedContract => ({selectedContract}));
+    return this;
+  }
+
+  public setCustomPageCode(code: string): this {
+    this.customPaymentPageCode = code;
     return this;
   }
 }

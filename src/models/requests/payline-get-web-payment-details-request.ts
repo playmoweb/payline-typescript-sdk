@@ -1,6 +1,6 @@
 import {PaylineBaseRequest} from "./payline-base-request";
 
- class PaylineGetWebPaymentDetailsRequest extends PaylineBaseRequest {
+class PaylineGetWebPaymentDetailsRequest extends PaylineBaseRequest {
   public token: string;
 
   constructor(token: string) {

@@ -17,8 +17,8 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public cancelURL: string;
   public order: PaylineOrder;
   public notificationURL?: string;
-  public selectedContractList?: [{ selectedContract: string }];
-  public secondSelectedContractList?: [{ selectedContract: string }];
+  public selectedContractList?: { selectedContract: string }[];
+  public secondSelectedContractList?: { selectedContract: string }[];
   public privateDataList?: { [key: string]: string } = {}; // metadata
   public languageCode?: string;
   public customPaymentPageCode?: string;
@@ -47,6 +47,16 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public changeContractNumber(contractNumber: string): this {
     this.payment.contractNumber = contractNumber;
     this.selectedContractList = [{selectedContract: contractNumber}];
+    return this;
+  }
+
+  public setSelectedContracts(contractsNumber: string[]): this {
+    this.selectedContractList = (contractsNumber || []).map(selectedContract => ({selectedContract}));
+    return this;
+  }
+
+  public setSecondSelectedContracts(contractsNumber: string[]): this {
+    this.secondSelectedContractList = (contractsNumber || []).map(selectedContract => ({selectedContract}));
     return this;
   }
 
@@ -94,6 +104,11 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     this.order.deliveryMode = deliveryMode.code;
     this.order.country = country;
     this.order.details = details;
+    return this;
+  }
+
+  public setCustomPageCode(code: string): this {
+    this.customPaymentPageCode = code;
     return this;
   }
 }
