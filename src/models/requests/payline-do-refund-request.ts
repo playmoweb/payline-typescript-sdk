@@ -1,7 +1,7 @@
 import {PaylineBaseRequest} from "./payline-base-request";
 import {PaylinePayment} from "../payline-payment";
-import {PaylineOrderDetail} from "../../../dist/models";
 import {PaylineCurrency} from "../payline-currency";
+import {PaylineOrderDetail} from "../payline-order-detail";
 
 class PaylineDoRefundRequest extends PaylineBaseRequest {
   public transactionID: string;
