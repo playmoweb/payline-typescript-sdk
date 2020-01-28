@@ -2,6 +2,7 @@ import * as soap from "soap";
 import {IOptions} from "soap/lib/types";
 import * as path from "path";
 import {ConsolePaylineLogger, PaylineLogger} from "./extensions/payline-logger";
+import {PaylineUtils} from "./payline-utils";
 
 const DEFAULT_HOMOLOGATION_WSDL = path.join(__dirname, "../config/wsdls/homologation/WebPaymentAPI.xml");
 const DEFAULT_PRODUCTION_WSDL = path.join(__dirname, "../config/wsdls/production/WebPaymentAPI.xml");
@@ -72,6 +73,27 @@ class Payline {
     return this.clientInitialization;
   }
 
+  /**
+   * Execute a soap method using a client and a payload.
+   */
+  public execAndCatch<T>(method: string, payload: any): Promise<T> {
+    return this.getClient()
+      .then(client => {
+        return new Promise((resolve, reject) => {
+          client[method](payload, (err, response) => err ? reject(err) : resolve(response));
+        });
+      })
+      .then((response: T) => {
+        if (!PaylineUtils.isSuccessful(response)) {
+          if (response["result"]) {
+            return Promise.reject(response["result"]);
+          }
+          return Promise.reject({shortMessage: "Payline: Invalid response code"});
+        }
+        return response;
+      })
+      .catch(err => PaylineUtils.parseErrors(err));
+  }
 }
 
 export {Payline};

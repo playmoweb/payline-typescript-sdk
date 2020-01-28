@@ -53,8 +53,15 @@ const paylineWalletService = new PaylineWalletManagement(paylineConfig);
 Tested endpoints :
 
 ```
+// PaylineWeb
 doWebPayment()
 getWebPaymentDetails()
 manageWebWallet()
+
+// PaylineWalletManagement
+
+
+// PaylinePaymentManagement
+doRefundRequest()
 ```
 

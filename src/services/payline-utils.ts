@@ -1,4 +1,3 @@
-import soap from "soap";
 import * as moment from "moment-timezone";
 
 /**
@@ -42,31 +41,6 @@ class PaylineUtils {
     }
 
     return Promise.reject({shortMessage: "Payline: Unknown error"});
-  }
-
-  /**
-   * Execute a soap method using a client and a payload.
-   */
-  public static execAndCatch<T>(client: soap.Client, method: string, payload: any): Promise<T> {
-    return new Promise((resolve, reject) => {
-      client[method](payload, (err, response) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(response);
-        }
-      });
-    })
-      .then((response: T) => {
-        if (!PaylineUtils.isSuccessful(response)) {
-          if (response["result"]) {
-            return Promise.reject(response["result"]);
-          }
-          return Promise.reject({shortMessage: "Payline: Invalid response code"});
-        }
-        return response;
-      })
-      .catch(err => PaylineUtils.parseErrors(err));
   }
 }
 

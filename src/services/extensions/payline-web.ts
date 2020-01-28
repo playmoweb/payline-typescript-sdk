@@ -1,18 +1,6 @@
-import {
-  PaylineGetWebPaymentDetailsRequest,
-  PaylineCreateWebWalletRequest,
-  PaylineManageWebWalletRequest,
-  PaylineDoWebPaymentRequest
-} from "../../models/requests";
-import {
-  PaylineGetWebPaymentDetailsResponse,
-  PaylineDoWebPaymentResponse,
-  PaylineManageWebWalletResponse,
-  PaylineCreateWebWalletResponse
-
-} from "../../models/responses";
+import {PaylineCreateWebWalletRequest, PaylineDoWebPaymentRequest, PaylineGetWebPaymentDetailsRequest, PaylineManageWebWalletRequest} from "../../models/requests";
+import {PaylineCreateWebWalletResponse, PaylineDoWebPaymentResponse, PaylineGetWebPaymentDetailsResponse, PaylineManageWebWalletResponse} from "../../models/responses";
 import {Payline} from "../payline";
-import {PaylineUtils} from "../payline-utils";
 
 class PaylineWeb {
   constructor(private readonly payline: Payline) {
@@ -22,8 +10,7 @@ class PaylineWeb {
    * Get web payment details
    */
   public getWebPaymentDetails(request: PaylineGetWebPaymentDetailsRequest): Promise<PaylineGetWebPaymentDetailsResponse> {
-    return this.payline.getClient()
-      .then(client => PaylineUtils.execAndCatch(client, "getWebPaymentDetails", request));
+    return this.payline.execAndCatch("getWebPaymentDetails", request);
   }
 
   /**
@@ -31,8 +18,7 @@ class PaylineWeb {
    */
   public doWebPayment(request: PaylineDoWebPaymentRequest): Promise<PaylineDoWebPaymentResponse> {
     request.changeContractNumber(this.payline.getContractNumber());
-    return this.payline.getClient()
-      .then(client => PaylineUtils.execAndCatch(client, "doWebPayment", request));
+    return this.payline.execAndCatch("doWebPayment", request);
   }
 
   /**
@@ -40,8 +26,7 @@ class PaylineWeb {
    */
   public createWebWallet(request: PaylineCreateWebWalletRequest): Promise<PaylineCreateWebWalletResponse> {
     request.changeContractNumber(this.payline.getContractNumber());
-    return this.payline.getClient()
-      .then(client => PaylineUtils.execAndCatch(client, "createWebWallet", request));
+    return this.payline.execAndCatch("createWebWallet", request);
   }
 
   /**
@@ -49,8 +34,7 @@ class PaylineWeb {
    */
   public manageWebWallet(request: PaylineManageWebWalletRequest): Promise<PaylineManageWebWalletResponse> {
     request.changeContractNumber(this.payline.getContractNumber());
-    return this.payline.getClient()
-      .then(client => PaylineUtils.execAndCatch(client, "manageWebWallet", request));
+    return this.payline.execAndCatch("manageWebWallet", request);
   }
 
 }

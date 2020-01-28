@@ -6,3 +6,4 @@ export {PaylineDoImmediateWalletPaymentRequest} from "./payline-do-immediate-wal
 export {PaylineDoScheduledWalletPaymentRequest} from "./payline-do-scheduled-wallet-payment-request";
 export {PaylineManageWebWalletRequest} from "./payline-manage-web-wallet-request";
 export {PaylineUpdateWalletRequest} from "./payline-update-wallet-request";
+export {PaylineDoRefundRequest} from "./payline-do-refund-request";
