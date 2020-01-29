@@ -12,8 +12,9 @@ class PaylinePaymentManagement {
   /**
    * Execute a refund (can be partial)
    */
-  public doRefundRequest(request: PaylineDoRefundRequest): Promise<PaylineDoRefundResponse> {
-    return this.payline.execAndCatch("doRefundRequest", request);
+  public doRefund(request: PaylineDoRefundRequest): Promise<PaylineDoRefundResponse> {
+    request.changeContractNumber(this.payline.getContractNumber());
+    return this.payline.execAndCatch("doRefund", request);
   }
 
 }

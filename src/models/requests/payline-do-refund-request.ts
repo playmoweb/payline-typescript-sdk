@@ -2,6 +2,8 @@ import {PaylineBaseRequest} from "./payline-base-request";
 import {PaylinePayment} from "../payline-payment";
 import {PaylineCurrency} from "../payline-currency";
 import {PaylineOrderDetail} from "../payline-order-detail";
+import {PaylineAction} from "../payline-action";
+import {PaylineMode} from "../payline-mode";
 
 class PaylineDoRefundRequest extends PaylineBaseRequest {
   public transactionID: string;
@@ -16,6 +18,13 @@ class PaylineDoRefundRequest extends PaylineBaseRequest {
     super();
     this.transactionID = transactionId;
     this.payment = payment ? payment : new PaylinePayment();
+    this.payment.action = PaylineAction.Refund.code;
+    this.payment.mode = PaylineMode.Full;
+  }
+
+  public changeContractNumber(contractNumber: string): this {
+    this.payment.contractNumber = contractNumber;
+    return this;
   }
 
   public setPaymentAmount(amount: number, currency: PaylineCurrency): this {
