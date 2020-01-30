@@ -80,18 +80,10 @@ class Payline {
     return this.getClient()
       .then(client => {
         return new Promise((resolve, reject) => {
-          client[method](payload, (err, response) => err ? reject(err) : resolve(response));
+          client[method](payload, (err, response: T) => err ? reject(err) : resolve(response));
         });
       })
-      .then((response: T) => {
-        if (!PaylineUtils.isSuccessful(response)) {
-          if (response["result"]) {
-            return Promise.reject(response["result"]);
-          }
-          return Promise.reject({shortMessage: "Payline: Invalid response code"});
-        }
-        return response;
-      })
+      .then((response: T) => response)
       .catch(err => PaylineUtils.parseErrors(err));
   }
 }
