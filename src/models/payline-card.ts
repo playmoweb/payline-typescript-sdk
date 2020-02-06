@@ -1,8 +1,18 @@
+import {PaylinePaymentData} from "./payline-payment-data";
+
+enum PaylineCardType {
+  CB = "CB",
+  VISA = "VISA",
+  MASTERCARD = "MASTERCARD",
+  MAESTRO = "MAESTRO",
+  AMEX = "AMEX"
+}
+
 class PaylineCard {
   public encryptionKeyId?: string;
   public encryptedData?: string;
   public number?: string;
-  public type: string;
+  public type: PaylineCardType;
   public expirationDate?: string;
   public cvx?: string;
   public ownerBirthdayDate?: string;
@@ -10,7 +20,7 @@ class PaylineCard {
   public cardPresent?: string;
   public cardholder?: string;
   public token?: string;
-  public paymentData?: any;
+  public paymentData?: PaylinePaymentData;
 }
 
-export {PaylineCard}
+export {PaylineCard, PaylineCardType};

@@ -44,10 +44,12 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     this.order.date = PaylineUtils.getPaylineNowDateFormat();
   }
 
-  public changeContractNumber(contractNumber: string): this {
-    this.payment.contractNumber = contractNumber;
-    if (!this.selectedContractList || this.selectedContractList.length === 0) {
-      this.selectedContractList = [{selectedContract: contractNumber}];
+  public changeContractNumber(contractNumber: string, force: boolean = false): this {
+    if (!this.payment.contractNumber || force) {
+      this.payment.contractNumber = contractNumber;
+      if (!this.selectedContractList || this.selectedContractList.length === 0) {
+        this.selectedContractList = [{selectedContract: contractNumber}];
+      }
     }
     return this;
   }
@@ -69,15 +71,11 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     return this;
   }
 
-  public setCurrency(currency: PaylineCurrency): this {
-    this.payment.currency = currency;
-    this.order.currency = currency;
-    return this;
-  }
-
-  public setAmount(amount: number): this {
+  public setAmount(amount: number, currency: PaylineCurrency): this {
     this.payment.amount = amount;
+    this.payment.currency = currency;
     this.order.amount = amount;
+    this.order.currency = currency;
     return this;
   }
 

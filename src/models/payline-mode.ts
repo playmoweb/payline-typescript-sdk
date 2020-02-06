@@ -1,8 +1,8 @@
 enum PaylineMode {
-  Full = "CPT",
-  Deferred = "DIF",
-  NInstallments = "NX",
-  Recurring = "REC"
+  FULL = "CPT",
+  DEFERRED = "DIF",
+  N_INSTALLMENTS = "NX",
+  RECURRING = "REC"
 }
 
 export {PaylineMode};

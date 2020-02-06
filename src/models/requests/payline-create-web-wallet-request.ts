@@ -23,10 +23,12 @@ class PaylineCreateWebWalletRequest extends PaylineBaseRequest {
     this.buyer = new PaylineBuyer();
   }
 
-  public changeContractNumber(contractNumber: string): this {
-    this.contractNumber = contractNumber;
-    if (!this.selectedContractList || this.selectedContractList.length === 0) {
-      this.selectedContractList = [{selectedContract: contractNumber}];
+  public changeContractNumber(contractNumber: string, force: boolean = false): this {
+    if (!this.contractNumber || force) {
+      this.contractNumber = contractNumber;
+      if (!this.selectedContractList || this.selectedContractList.length === 0) {
+        this.selectedContractList = [{selectedContract: contractNumber}];
+      }
     }
     return this;
   }

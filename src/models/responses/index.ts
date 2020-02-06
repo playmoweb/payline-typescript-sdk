@@ -7,3 +7,4 @@ export {PaylineDoImmediateWalletPaymentResponse} from "./payline-do-immediate-wa
 export {PaylineDoScheduledWalletPaymentResponse} from "./payline-do-scheduled-wallet-payment-response";
 export {PaylineCreateWebWalletResponse} from "./payline-create-web-wallet-response";
 export {PaylineDoRefundResponse} from "./payline-do-refund-response";
+export {PaylineDoAuthorizationResponse} from "./payline-do-authorization-response";

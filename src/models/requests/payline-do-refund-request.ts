@@ -19,11 +19,13 @@ class PaylineDoRefundRequest extends PaylineBaseRequest {
     this.transactionID = transactionId;
     this.payment = payment ? payment : new PaylinePayment();
     this.payment.action = PaylineAction.Refund.code;
-    this.payment.mode = PaylineMode.Full;
+    this.payment.mode = PaylineMode.FULL;
   }
 
-  public changeContractNumber(contractNumber: string): this {
-    this.payment.contractNumber = contractNumber;
+  public changeContractNumber(contractNumber: string, force: boolean = false): this {
+    if (!this.payment.contractNumber || force) {
+      this.payment.contractNumber = contractNumber;
+    }
     return this;
   }
 

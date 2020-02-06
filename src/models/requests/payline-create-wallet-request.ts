@@ -22,8 +22,10 @@ class PaylineCreateWalletRequest extends PaylineBaseRequest {
     this.wallet.card = card;
   }
 
-  public changeContractNumber(contractNumber: string): this {
-    this.contractNumber = contractNumber;
+  public changeContractNumber(contractNumber: string, force: boolean = false): this {
+    if (!this.contractNumber || force) {
+      this.contractNumber = contractNumber;
+    }
     return this;
   }
 }

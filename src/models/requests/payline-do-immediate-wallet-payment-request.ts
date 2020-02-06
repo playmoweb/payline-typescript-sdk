@@ -35,8 +35,10 @@ class PaylineDoImmediateWalletPaymentRequest extends PaylineBaseRequest {
     this.order.date = PaylineUtils.getPaylineNowDateFormat();
   }
 
-  public changeContractNumber(contractNumber: string): this {
-    this.payment.contractNumber = contractNumber;
+  public changeContractNumber(contractNumber: string, force: boolean = false): this {
+    if (!this.payment.contractNumber || force) {
+      this.payment.contractNumber = contractNumber;
+    }
     return this;
   }
 
