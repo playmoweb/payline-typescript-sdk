@@ -6,7 +6,7 @@ interface PaylineLogger {
  * Default console logger
  */
 class ConsolePaylineLogger implements PaylineLogger {
-  private debugMode: boolean;
+  private readonly debugMode: boolean;
 
   constructor(debugMode: boolean) {
     this.debugMode = debugMode;

@@ -9,14 +9,14 @@ class PaylineUtils {
   /**
    * Return the payline date format for this date
    */
-  public static getPaylineDateFormat(value: moment.Moment) {
+  public static getPaylineDateFormat(value: moment.Moment): string {
     return value.format("DD/MM/YYYY HH:mm");
   }
 
   /**
    * Return the payline date format for this date
    */
-  public static getPaylineNowDateFormat() {
+  public static getPaylineNowDateFormat(): string {
     return this.getPaylineDateFormat(moment.tz(PaylineUtils.timezone));
   }
 

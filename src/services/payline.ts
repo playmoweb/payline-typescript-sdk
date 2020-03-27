@@ -13,7 +13,7 @@ const DEFAULT_PRODUCTION_WSDL = path.join(__dirname, "../config/wsdls/production
 class Payline {
   private readonly merchantId: any;
   private readonly accessKey: any;
-  private contractNumber: any;
+  private readonly contractNumber: any;
   private wsdl: string;
   private options: IOptions;
   private production: boolean = false;

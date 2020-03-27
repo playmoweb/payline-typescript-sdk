@@ -17,8 +17,6 @@ class PaylinePaymentManagement {
     return this.payline.execAndCatch("doRefund", request);
   }
 
-
-
 }
 
 export {PaylinePaymentManagement};

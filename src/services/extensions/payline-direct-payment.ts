@@ -17,8 +17,6 @@ class PaylineDirectPayment {
     return this.payline.execAndCatch("doAuthorization", request);
   }
 
-
-
 }
 
 export {PaylineDirectPayment};

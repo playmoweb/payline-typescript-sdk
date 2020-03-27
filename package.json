@@ -10,7 +10,8 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "tsc -p . && npm run copy-wsdl",
+    "lint": "./node_modules/.bin/eslint \"./src/**\" --ext .ts",
+    "build": "npm run lint && tsc -p . && npm run copy-wsdl",
     "link-all": "npm run build && npm link",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
     "copy-wsdl": "copyfiles -u 1 './src/config/wsdls/**' ./dist"
