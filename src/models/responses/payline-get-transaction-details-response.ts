@@ -8,30 +8,28 @@ import {PaylineCardOut} from "../payline-card-out";
 import {PaylineExtendedCardType} from "../payline-extended-card-type";
 import {PaylineOrder} from "../payline-order";
 import {PaylineBuyer} from "../payline-buyer";
-import {PaylineWallet} from "../payline-wallet";
 
 class PaylineGetTransactionDetailsResponse extends PaylineBaseResponse {
-  public contractNumber: string;
   public result: PaylineResultResponse;
   public transaction: PaylineTransaction;
   public payment: PaylinePayment;
   public authorization: PaylineAuthorization;
-
-  public privateDataList?: { [key: string]: string }; // metadata
-  public paymentRecordId?: string;
-  public billingRecordList?: any;
-  public authentication3DSecure?: PaylineAuthentication3DS;
-  public cardOut: PaylineCardOut;
-  public extendedCard: PaylineExtendedCardType;
   public order?: PaylineOrder;
-  public paymentAdditionalList?: any;
+  public buyer?: PaylineBuyer;
+  public privateDataList?: { [key: string]: string }; // metadata
+  public card: PaylineCardOut;
+  public extendedCard: PaylineExtendedCardType;
+  public associatedTransactionsList?: any;
+  public statusHistoryList?: any;
   public media?: string;
-  public numberOfAttempt?: string;
-  public wallet?: PaylineWallet;
-  public contractNumberWalletList?: any;
+  public customerMedia: any;
+  public contractNumber: string;
+  public paymentAdditionalList?: any;
   public bankAccountData?: any;
   public subMerchant?: {};
-  public buyer?: PaylineBuyer;
+  public authentication3DSecure?: PaylineAuthentication3DS;
+  public pointOfSell?: any;
+  public routingRule?: any;
 }
 
 export {PaylineGetTransactionDetailsResponse};
