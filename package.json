@@ -36,7 +36,7 @@
     "@types/chai": "4.1.7",
     "@types/mocha": "2.2.48",
     "@types/moment-timezone": "0.5.12",
-    "@types/node": "13.1.8",
+    "@types/node": "13.11.1",
     "@typescript-eslint/eslint-plugin": "2.22.0",
     "@typescript-eslint/parser": "2.22.0",
     "chai": "4.2.0",

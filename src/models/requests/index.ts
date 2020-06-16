@@ -8,3 +8,4 @@ export {PaylineManageWebWalletRequest} from "./payline-manage-web-wallet-request
 export {PaylineUpdateWalletRequest} from "./payline-update-wallet-request";
 export {PaylineDoRefundRequest} from "./payline-do-refund-request";
 export {PaylineDoAuthorizationRequest} from "./payline-do-authorization-request";
+export {PaylineGetTransactionDetailsRequest} from "./payline-get-transaction-details-request";

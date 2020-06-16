@@ -7,6 +7,7 @@ import {PaylineWeb as InternalPaylineWeb} from "./services/extensions/payline-we
 import {PaylineWalletManagement as InternalPaylineWalletManagement} from "./services/extensions/payline-wallet-management";
 import {PaylinePaymentManagement as InternalPaylinePaymentManagement} from "./services/extensions/payline-payment-management";
 import {PaylineDirectPayment as InternalPaylineDirectPayment} from "./services/extensions/payline-direct-payment";
+import {PaylineStatusRequest as InternalPaylineStatusRequest} from "./services/extensions/payline-status-request";
 
 export const Payline = InternalPayline;
 export type Payline = InternalPayline;
@@ -22,3 +23,6 @@ export type PaylinePaymentManagement = InternalPaylinePaymentManagement;
 
 export const PaylineDirectPayment = InternalPaylineDirectPayment;
 export type PaylineDirectPayment = InternalPaylineDirectPayment;
+
+export const PaylineStatusRequest = InternalPaylineStatusRequest;
+export type PaylineStatusRequest = InternalPaylineStatusRequest;
