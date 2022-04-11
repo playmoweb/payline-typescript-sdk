@@ -1,5 +1,5 @@
 abstract class PaylineBaseRequest {
-  public version: number = 21;
+  public version: number = 30;
 }
 
 export {PaylineBaseRequest}
