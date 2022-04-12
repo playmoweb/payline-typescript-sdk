@@ -1,15 +1,15 @@
-import {PaylineMode} from "../payline-mode";
-import {PaylineCurrency} from "../payline-currency";
-import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylineOrder} from "../payline-order";
-import {PaylineBuyer} from "../payline-buyer";
-import {PaylineOwner} from "../payline-owner";
-import {PaylineThreeDSInfo} from "../payline-three-ds-info";
-import {PaylineUtils} from "../../services/payline-utils";
-import {PaylineAction} from "../payline-action";
-import {PaylinePayment} from "../payline-payment";
-import {PaylineOrderDetail} from "../payline-order-detail";
+import {PaylineMode} from "../payline-mode.js";
+import {PaylineCurrency} from "../payline-currency.js";
+import {PaylineDeliveryMode} from "../payline-delivery-mode.js";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylineOrder} from "../payline-order.js";
+import {PaylineBuyer} from "../payline-buyer.js";
+import {PaylineOwner} from "../payline-owner.js";
+import {PaylineThreeDSInfo} from "../payline-three-ds-info.js";
+import {PaylineUtils} from "../../services/payline-utils.js";
+import {PaylineAction} from "../payline-action.js";
+import {PaylinePayment} from "../payline-payment.js";
+import {PaylineOrderDetail} from "../payline-order-detail.js";
 
 class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;

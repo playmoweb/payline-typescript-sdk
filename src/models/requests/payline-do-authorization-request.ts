@@ -1,18 +1,18 @@
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylinePayment} from "../payline-payment";
-import {PaylineCurrency} from "../payline-currency";
-import {PaylineAction} from "../payline-action";
-import {PaylineMode} from "../payline-mode";
-import {PaylineCard, PaylineCardType} from "../payline-card";
-import {PaylineOrder} from "../payline-order";
-import {PaylineBuyer} from "../payline-buyer";
-import {PaylineOwner} from "../payline-owner";
-import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
-import {PaylineBankAccountData} from "../payline-bank-account-data";
-import {PaylineSubMerchant} from "../payline-sub-merchant";
-import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import {PaylineOrderDetail} from "../payline-order-detail";
-import {PaylinePaymentData} from "../payline-payment-data";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylinePayment} from "../payline-payment.js";
+import {PaylineCurrency} from "../payline-currency.js";
+import {PaylineAction} from "../payline-action.js";
+import {PaylineMode} from "../payline-mode.js";
+import {PaylineCard, PaylineCardType} from "../payline-card.js";
+import {PaylineOrder} from "../payline-order.js";
+import {PaylineBuyer} from "../payline-buyer.js";
+import {PaylineOwner} from "../payline-owner.js";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds.js";
+import {PaylineBankAccountData} from "../payline-bank-account-data.js";
+import {PaylineSubMerchant} from "../payline-sub-merchant.js";
+import {PaylineDeliveryMode} from "../payline-delivery-mode.js";
+import {PaylineOrderDetail} from "../payline-order-detail.js";
+import {PaylinePaymentData} from "../payline-payment-data.js";
 
 class PaylineDoAuthorizationRequest extends PaylineBaseRequest {
   public transient?: string;

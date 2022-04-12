@@ -1,8 +1,8 @@
-import {PaylineBaseResponse} from "./payline-base-response";
-import {PaylineTransaction} from "../payline-transaction";
-import {PaylineAuthorization} from "../payline-authorization";
-import {PaylineCardOut} from "../payline-card-out";
-import {PaylineExtendedCardType} from "../payline-extended-card-type";
+import {PaylineBaseResponse} from "./payline-base-response.js";
+import {PaylineTransaction} from "../payline-transaction.js";
+import {PaylineAuthorization} from "../payline-authorization.js";
+import {PaylineCardOut} from "../payline-card-out.js";
+import {PaylineExtendedCardType} from "../payline-extended-card-type.js";
 
 class PaylineDoAuthorizationResponse extends PaylineBaseResponse {
   public transaction: PaylineTransaction;

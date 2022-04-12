@@ -4,14 +4,14 @@
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/src",
     "lib": [
-      "es2018"
+      "esnext"
     ],
-    "module": "commonjs",
+    "module": "esnext",
     "noImplicitReturns": true,
     "allowJs": true,
     "outDir": "dist",
     "sourceMap": true,
-    "target": "es6",
+    "target": "esnext",
     "typeRoots": [
       "./node_modules/@types"
     ],

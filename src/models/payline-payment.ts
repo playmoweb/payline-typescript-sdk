@@ -1,4 +1,4 @@
-import {PaylineCurrency} from "./payline-currency";
+import {PaylineCurrency} from "./payline-currency.js";
 
 class PaylinePayment {
   public action: number;

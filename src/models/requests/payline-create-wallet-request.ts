@@ -1,9 +1,9 @@
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylineBuyer} from "../payline-buyer";
-import {PaylineOwner} from "../payline-owner";
-import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
-import {PaylineCard} from "../payline-card";
-import {PaylineWallet} from "../payline-wallet";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylineBuyer} from "../payline-buyer.js";
+import {PaylineOwner} from "../payline-owner.js";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds.js";
+import {PaylineCard} from "../payline-card.js";
+import {PaylineWallet} from "../payline-wallet.js";
 
 class PaylineCreateWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;

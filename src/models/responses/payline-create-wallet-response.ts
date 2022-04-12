@@ -1,6 +1,6 @@
-import {PaylineCardOut} from "../payline-card-out";
-import {PaylineExtendedCardType} from "../payline-extended-card-type";
-import {PaylineBaseResponse} from "./payline-base-response";
+import {PaylineCardOut} from "../payline-card-out.js";
+import {PaylineExtendedCardType} from "../payline-extended-card-type.js";
+import {PaylineBaseResponse} from "./payline-base-response.js";
 
 class PaylineCreateWalletResponse extends PaylineBaseResponse {
   public card: PaylineCardOut;

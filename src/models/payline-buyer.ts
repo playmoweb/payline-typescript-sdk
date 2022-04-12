@@ -1,4 +1,4 @@
-import {PaylineAddress} from "./payline-address";
+import {PaylineAddress} from "./payline-address.js";
 
 class PaylineBuyer {
   public title?: string;

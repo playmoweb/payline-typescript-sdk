@@ -1,5 +1,5 @@
-import {PaylineBaseResponse} from "./payline-base-response";
-import {PaylineTransaction} from "../payline-transaction";
+import {PaylineBaseResponse} from "./payline-base-response.js";
+import {PaylineTransaction} from "../payline-transaction.js";
 
 class PaylineDoRefundResponse extends PaylineBaseResponse {
   public transaction: PaylineTransaction;

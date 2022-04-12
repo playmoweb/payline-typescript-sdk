@@ -1,4 +1,4 @@
-import {PaylinePaymentData} from "./payline-payment-data";
+import {PaylinePaymentData} from "./payline-payment-data.js";
 
 enum PaylineCardType {
   CB = "CB",

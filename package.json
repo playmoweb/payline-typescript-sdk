@@ -2,9 +2,11 @@
   "name": "@playmoweb/payline-typescript-sdk",
   "version": "1.1.5",
   "description": "Payline Typescript SDK",
-  "main": "dist/index.js",
+  "exports": "./dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Thibaud Giovannetti",
+  "type": "module",
+  "node": "^14.17.0 || >=16.14.0",
   "repository": {
     "url": "https://github.com/playmoweb/payline-typescript-sdk"
   },

@@ -1,6 +1,6 @@
-import {Payline} from "../payline";
-import {PaylineDoRefundRequest} from "../../models/requests";
-import {PaylineDoRefundResponse} from "../../models/responses";
+import {Payline} from "../payline.js";
+import {PaylineDoRefundRequest} from "../../models/requests/index.js";
+import {PaylineDoRefundResponse} from "../../models/responses/index.js";
 
 /**
  * Manage payline payments

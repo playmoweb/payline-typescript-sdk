@@ -1,9 +1,9 @@
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylinePayment} from "../payline-payment";
-import {PaylineCurrency} from "../payline-currency";
-import {PaylineOrderDetail} from "../payline-order-detail";
-import {PaylineAction} from "../payline-action";
-import {PaylineMode} from "../payline-mode";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylinePayment} from "../payline-payment.js";
+import {PaylineCurrency} from "../payline-currency.js";
+import {PaylineOrderDetail} from "../payline-order-detail.js";
+import {PaylineAction} from "../payline-action.js";
+import {PaylineMode} from "../payline-mode.js";
 
 class PaylineDoRefundRequest extends PaylineBaseRequest {
   public transactionID: string;

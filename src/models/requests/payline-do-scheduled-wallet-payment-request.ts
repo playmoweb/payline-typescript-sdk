@@ -1,11 +1,11 @@
-import {PaylineMode} from "../payline-mode";
-import {PaylineCurrency} from "../payline-currency";
-import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import {PaylineOrder} from "../payline-order";
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylineUtils} from "../../services/payline-utils";
-import {PaylineAction} from "../payline-action";
-import {PaylinePayment} from "../payline-payment";
+import {PaylineMode} from "../payline-mode.js";
+import {PaylineCurrency} from "../payline-currency.js";
+import {PaylineDeliveryMode} from "../payline-delivery-mode.js";
+import {PaylineOrder} from "../payline-order.js";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylineUtils} from "../../services/payline-utils.js";
+import {PaylineAction} from "../payline-action.js";
+import {PaylinePayment} from "../payline-payment.js";
 
 class PaylineDoScheduledWalletPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;

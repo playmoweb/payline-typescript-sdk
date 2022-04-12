@@ -1,8 +1,8 @@
 import * as soap from "soap";
-import {IOptions} from "soap/lib/types";
+import {IOptions} from "soap/lib/types.js";
 import * as path from "path";
-import {ConsolePaylineLogger, PaylineLogger} from "./extensions/payline-logger";
-import {PaylineUtils} from "./payline-utils";
+import {ConsolePaylineLogger, PaylineLogger} from "./extensions/payline-logger.js";
+import {PaylineUtils} from "./payline-utils.js";
 
 const DEFAULT_HOMOLOGATION_WSDL = path.join(__dirname, "../config/wsdls/homologation/WebPaymentAPI.xml");
 const DEFAULT_PRODUCTION_WSDL = path.join(__dirname, "../config/wsdls/production/WebPaymentAPI.xml");

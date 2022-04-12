@@ -1,13 +1,13 @@
-import {PaylineBaseResponse} from "./payline-base-response";
-import {PaylineResultResponse} from "./payline-result-response";
-import {PaylineTransaction} from "../payline-transaction";
-import {PaylinePayment} from "../payline-payment";
-import {PaylineAuthorization} from "../payline-authorization";
-import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
-import {PaylineCardOut} from "../payline-card-out";
-import {PaylineExtendedCardType} from "../payline-extended-card-type";
-import {PaylineOrder} from "../payline-order";
-import {PaylineBuyer} from "../payline-buyer";
+import {PaylineBaseResponse} from "./payline-base-response.js";
+import {PaylineResultResponse} from "./payline-result-response.js";
+import {PaylineTransaction} from "../payline-transaction.js";
+import {PaylinePayment} from "../payline-payment.js";
+import {PaylineAuthorization} from "../payline-authorization.js";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds.js";
+import {PaylineCardOut} from "../payline-card-out.js";
+import {PaylineExtendedCardType} from "../payline-extended-card-type.js";
+import {PaylineOrder} from "../payline-order.js";
+import {PaylineBuyer} from "../payline-buyer.js";
 
 class PaylineGetTransactionDetailsResponse extends PaylineBaseResponse {
   public result: PaylineResultResponse;

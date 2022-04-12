@@ -1,4 +1,4 @@
-import {PaylineOrderDetail} from "./payline-order-detail";
+import {PaylineOrderDetail} from "./payline-order-detail.js";
 
 class PaylineOrder {
   public ref: string;
