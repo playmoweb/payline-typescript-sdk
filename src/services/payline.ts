@@ -1,6 +1,6 @@
-import * as soap from "soap";
+import soap from "soap";
 import {IOptions} from "soap/lib/types.js";
-import * as path from "path";
+import path from "path";
 import {fileURLToPath} from "url";
 import {ConsolePaylineLogger, PaylineLogger} from "./extensions/payline-logger.js";
 import {PaylineUtils} from "./payline-utils.js";
