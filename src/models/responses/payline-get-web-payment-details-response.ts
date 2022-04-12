@@ -12,7 +12,7 @@ import {PaylineWallet} from "../payline-wallet.js";
 
 class PaylineGetWebPaymentDetailsResponse extends PaylineBaseResponse {
   public contractNumber: string;
-  public result: PaylineResultResponse;
+  public result: PaylineResultResponse = {code: ""};
   public transaction: PaylineTransaction;
   public payment: PaylinePayment;
   public authorization: PaylineAuthorization;

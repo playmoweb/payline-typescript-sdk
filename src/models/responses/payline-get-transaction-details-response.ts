@@ -10,7 +10,7 @@ import {PaylineOrder} from "../payline-order.js";
 import {PaylineBuyer} from "../payline-buyer.js";
 
 class PaylineGetTransactionDetailsResponse extends PaylineBaseResponse {
-  public result: PaylineResultResponse;
+  public result: PaylineResultResponse = {code: ""};
   public transaction: PaylineTransaction;
   public payment: PaylinePayment;
   public authorization: PaylineAuthorization;
