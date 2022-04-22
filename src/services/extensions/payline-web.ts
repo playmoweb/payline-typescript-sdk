@@ -14,7 +14,7 @@ class PaylineWeb {
   }
 
   /**
-   * Get web payment details
+   * Do web payment
    */
   public doWebPayment(request: PaylineDoWebPaymentRequest): Promise<PaylineDoWebPaymentResponse> {
     request.changeContractNumber(this.payline.getContractNumber());
