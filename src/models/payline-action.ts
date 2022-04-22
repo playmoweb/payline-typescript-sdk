@@ -26,8 +26,13 @@ class PaylineAction {
   public static readonly AuthCaptureSplitShipment = new PaylineAction(127, "AUTHOR_CAPTURE_SPLIT_SHIPMENT");
   public static readonly AuthOtherRecurring = new PaylineAction(128, "AUTHOR_OTHER_COF");
   public static readonly AuthCaptureOther = new PaylineAction(129, "AUTHOR_CAPTURE_OTHER_COF");
+  public static readonly AuthRental = new PaylineAction(130, "AUTHORIZATION_RENTAL");
+  public static readonly AuthCaptureRentalDelayed = new PaylineAction(132, "AUTHORIZATION_CAPTURE_RENTAL_DELAYED");
+  public static readonly AuthCaptureNoShow = new PaylineAction(133, "AUTHORIZATION_CAPTURE_NO_SHOW");
+  public static readonly AccountVerifSharePayment = new PaylineAction(148, "ACCOUNT_VERIF_SHARE_PAYMENT");
   public static readonly SEPACreditTransfert = new PaylineAction(150, "SCT");
   public static readonly ReAuthorization = new PaylineAction(202, "REAUTHORIZATION");
+  public static readonly LastCapture = new PaylineAction(203, "LAST_CAPTURE");
   public static readonly Debit = new PaylineAction(204, "DEBIT");
   public static readonly Refund = new PaylineAction(421, "REFUND");
   public static readonly Credit = new PaylineAction(422, "CREDIT");
