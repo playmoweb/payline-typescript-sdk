@@ -33,7 +33,7 @@ const doWebPaymentRequest = new PaylineDoWebPaymentRequest("YOUR_ORDER_REFERENCE
     .setCallbackUrls("https://www.your.website.com/returnUrl", "https://www.your.website.com/cancelUrl", "https://your.server.com/hook/payline")
     .setAmount(1000, PaylineCurrency.EUR)
     .setPaymentDetails(PaylineAction.AuthCapture, PaylineMode.FULL)
-    .setOrderDetails(PaylineDeliveryMode.DigitalGoods)
+    .setOrderDetails(PaylineDeliveryMode.Virtual)
     .setWalletId("CUSTOMER_WALLET_ID"); // if needed, attach a walletId
 
 // Execute the payment (will return a promise)
