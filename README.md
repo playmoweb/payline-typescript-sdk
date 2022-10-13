@@ -31,10 +31,9 @@ const paylineWebService = new PaylineWeb(paylineConfig);
 const doWebPaymentRequest = new PaylineDoWebPaymentRequest("YOUR_ORDER_REFERENCE_ID")
     .setClientDetails("client-email@example.com", "First name", "Last name")
     .setCallbackUrls("https://www.your.website.com/returnUrl", "https://www.your.website.com/cancelUrl", "https://your.server.com/hook/payline")
-    .setCurrency(PaylineCurrency.EUR)
-    .setAmount(1000)
-    .setPaymentDetails(PaylineAction.AuthCapture, PaylineMode.Full)
-    .setOrderDetails(PaylineDeliveryMode.DigitalGoods)
+    .setAmount(1000, PaylineCurrency.EUR)
+    .setPaymentDetails(PaylineAction.AuthCapture, PaylineMode.FULL)
+    .setOrderDetails(PaylineDeliveryMode.Virtual)
     .setWalletId("CUSTOMER_WALLET_ID"); // if needed, attach a walletId
 
 // Execute the payment (will return a promise)

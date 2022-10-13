@@ -1,4 +1,4 @@
-import {PaylineCard} from "./payline-card";
+import {PaylineCard} from "./payline-card.js";
 
 class PaylineWallet {
   public card: PaylineCard;

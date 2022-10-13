@@ -1,6 +1,6 @@
-import {Payline} from "../payline";
-import {PaylineDoAuthorizationRequest} from "../../models/requests";
-import {PaylineDoAuthorizationResponse} from "../../models/responses";
+import {Payline} from "../payline.js";
+import {PaylineDoAuthorizationRequest} from "../../models/requests/index.js";
+import {PaylineDoAuthorizationResponse} from "../../models/responses/index.js";
 
 /**
  * Payline direct payments Service

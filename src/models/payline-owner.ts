@@ -1,4 +1,4 @@
-import {PaylineAddress} from "./payline-address";
+import {PaylineAddress} from "./payline-address.js";
 
 class PaylineOwner {
   public lastName?: string;

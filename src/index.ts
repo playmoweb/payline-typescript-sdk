@@ -1,13 +1,13 @@
-export * from "./models/requests";
-export * from "./models/responses";
-export * from "./models";
+export * from "./models/requests/index.js";
+export * from "./models/responses/index.js";
+export * from "./models/index.js";
 
-import {Payline as InternalPayline} from "./services/payline";
-import {PaylineWeb as InternalPaylineWeb} from "./services/extensions/payline-web";
-import {PaylineWalletManagement as InternalPaylineWalletManagement} from "./services/extensions/payline-wallet-management";
-import {PaylinePaymentManagement as InternalPaylinePaymentManagement} from "./services/extensions/payline-payment-management";
-import {PaylineDirectPayment as InternalPaylineDirectPayment} from "./services/extensions/payline-direct-payment";
-import {PaylineStatusRequest as InternalPaylineStatusRequest} from "./services/extensions/payline-status-request";
+import {Payline as InternalPayline} from "./services/payline.js";
+import {PaylineWeb as InternalPaylineWeb} from "./services/extensions/payline-web.js";
+import {PaylineWalletManagement as InternalPaylineWalletManagement} from "./services/extensions/payline-wallet-management.js";
+import {PaylinePaymentManagement as InternalPaylinePaymentManagement} from "./services/extensions/payline-payment-management.js";
+import {PaylineDirectPayment as InternalPaylineDirectPayment} from "./services/extensions/payline-direct-payment.js";
+import {PaylineStatusRequest as InternalPaylineStatusRequest} from "./services/extensions/payline-status-request.js";
 
 export const Payline = InternalPayline;
 export type Payline = InternalPayline;

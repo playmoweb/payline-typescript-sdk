@@ -2,9 +2,11 @@
   "name": "@playmoweb/payline-typescript-sdk",
   "version": "1.1.5",
   "description": "Payline Typescript SDK",
-  "main": "dist/index.js",
+  "exports": "./dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Thibaud Giovannetti",
+  "type": "module",
+  "node": "^14.17.0 || >=16.14.0",
   "repository": {
     "url": "https://github.com/playmoweb/payline-typescript-sdk"
   },
@@ -28,14 +30,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "crypto-random-string": "3.2.0",
-    "moment-timezone": "0.5.28",
-    "soap": "0.31.0"
+    "crypto-random-string": "4.0.0",
+    "moment-timezone": "0.5.34",
+    "soap": "0.43.0"
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
     "@types/mocha": "2.2.48",
-    "@types/moment-timezone": "0.5.12",
+    "@types/moment-timezone": "0.5.30",
     "@types/node": "13.11.1",
     "@typescript-eslint/eslint-plugin": "2.22.0",
     "@typescript-eslint/parser": "2.22.0",
@@ -45,7 +47,7 @@
     "mocha": "6.1.4",
     "reflect-metadata": "0.1.13",
     "ts-node": "8.8.1",
-    "typescript": "3.8.3"
+    "typescript": "4.6.3"
   },
   "private": false
 }

@@ -1,6 +1,6 @@
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylineBuyer} from "../payline-buyer";
-import {PaylineOwner} from "../payline-owner";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylineBuyer} from "../payline-buyer.js";
+import {PaylineOwner} from "../payline-owner.js";
 
 class PaylineCreateWebWalletRequest extends PaylineBaseRequest {
   public contractNumber: string;

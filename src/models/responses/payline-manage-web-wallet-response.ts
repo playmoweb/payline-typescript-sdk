@@ -1,4 +1,4 @@
-import {PaylineBaseResponse} from "./payline-base-response";
+import {PaylineBaseResponse} from "./payline-base-response.js";
 
 class PaylineManageWebWalletResponse extends PaylineBaseResponse {
   public token: string;

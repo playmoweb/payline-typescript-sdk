@@ -1,7 +1,7 @@
 import cryptoRandomString from "crypto-random-string";
-import {Payline} from "../payline";
-import {PaylineCreateWalletRequest, PaylineDoImmediateWalletPaymentRequest, PaylineDoScheduledWalletPaymentRequest, PaylineUpdateWalletRequest} from "../../models/requests";
-import {PaylineCreateWalletResponse, PaylineDoImmediateWalletPaymentResponse, PaylineDoScheduledWalletPaymentResponse, PaylineUpdateWalletResponse} from "../../models/responses";
+import {Payline} from "../payline.js";
+import {PaylineCreateWalletRequest, PaylineDoImmediateWalletPaymentRequest, PaylineDoScheduledWalletPaymentRequest, PaylineUpdateWalletRequest} from "../../models/requests/index.js";
+import {PaylineCreateWalletResponse, PaylineDoImmediateWalletPaymentResponse, PaylineDoScheduledWalletPaymentResponse, PaylineUpdateWalletResponse} from "../../models/responses/index.js";
 
 /**
  * Manage payline wallets

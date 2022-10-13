@@ -1,6 +1,6 @@
-import {Payline} from "../payline";
-import {PaylineGetTransactionDetailsResponse} from "../../models/responses";
-import {PaylineGetTransactionDetailsRequest} from "../../models/requests";
+import {Payline} from "../payline.js";
+import {PaylineGetTransactionDetailsResponse} from "../../models/responses/index.js";
+import {PaylineGetTransactionDetailsRequest} from "../../models/requests/index.js";
 
 /**
  * Manage payline status request

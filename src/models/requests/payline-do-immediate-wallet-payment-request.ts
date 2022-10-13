@@ -1,13 +1,13 @@
-import {PaylineMode} from "../payline-mode";
-import {PaylineCurrency} from "../payline-currency";
-import {PaylineDeliveryMode} from "../payline-delivery-mode";
-import {PaylineAuthentication3DS} from "../payline-authentication-3ds";
-import {PaylineBaseRequest} from "./payline-base-request";
-import {PaylineAction} from "../payline-action";
-import {PaylineBuyer} from "../payline-buyer";
-import {PaylineOrder} from "../payline-order";
-import {PaylineUtils} from "../../services/payline-utils";
-import {PaylinePayment} from "../payline-payment";
+import {PaylineMode} from "../payline-mode.js";
+import {PaylineCurrency} from "../payline-currency.js";
+import {PaylineDeliveryMode} from "../payline-delivery-mode.js";
+import {PaylineAuthentication3DS} from "../payline-authentication-3ds.js";
+import {PaylineBaseRequest} from "./payline-base-request.js";
+import {PaylineAction} from "../payline-action.js";
+import {PaylineBuyer} from "../payline-buyer.js";
+import {PaylineOrder} from "../payline-order.js";
+import {PaylineUtils} from "../../services/payline-utils.js";
+import {PaylinePayment} from "../payline-payment.js";
 
 class PaylineDoImmediateWalletPaymentRequest extends PaylineBaseRequest {
   public walletId: string;

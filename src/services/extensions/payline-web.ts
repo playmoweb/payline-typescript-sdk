@@ -1,6 +1,6 @@
-import {PaylineCreateWebWalletRequest, PaylineDoWebPaymentRequest, PaylineGetWebPaymentDetailsRequest, PaylineManageWebWalletRequest} from "../../models/requests";
-import {PaylineCreateWebWalletResponse, PaylineDoWebPaymentResponse, PaylineGetWebPaymentDetailsResponse, PaylineManageWebWalletResponse} from "../../models/responses";
-import {Payline} from "../payline";
+import {PaylineCreateWebWalletRequest, PaylineDoWebPaymentRequest, PaylineGetWebPaymentDetailsRequest, PaylineManageWebWalletRequest} from "../../models/requests/index.js";
+import {PaylineCreateWebWalletResponse, PaylineDoWebPaymentResponse, PaylineGetWebPaymentDetailsResponse, PaylineManageWebWalletResponse} from "../../models/responses/index.js";
+import {Payline} from "../payline.js";
 
 class PaylineWeb {
   constructor(private readonly payline: Payline) {
@@ -14,7 +14,7 @@ class PaylineWeb {
   }
 
   /**
-   * Get web payment details
+   * Do web payment
    */
   public doWebPayment(request: PaylineDoWebPaymentRequest): Promise<PaylineDoWebPaymentResponse> {
     request.changeContractNumber(this.payline.getContractNumber());

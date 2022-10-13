@@ -1,4 +1,4 @@
-import {PaylineBaseRequest} from "./payline-base-request";
+import {PaylineBaseRequest} from "./payline-base-request.js";
 
 class PaylineGetTransactionDetailsRequest extends PaylineBaseRequest {
   public transactionId: string;
