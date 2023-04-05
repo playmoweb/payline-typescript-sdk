@@ -18,3 +18,4 @@ export {PaylineOrderDetail} from "./payline-order-detail.js";
 export {PaylineBankAccountData} from "./payline-bank-account-data.js";
 export {PaylineSubMerchant} from "./payline-sub-merchant.js";
 export {PaylinePaymentData} from "./payline-payment-data.js";
+export {PaylineChallengeInd} from "./payline-challenge-ind.js";

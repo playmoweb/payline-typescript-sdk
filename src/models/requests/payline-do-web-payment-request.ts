@@ -10,6 +10,7 @@ import {PaylineUtils} from "../../services/payline-utils.js";
 import {PaylineAction} from "../payline-action.js";
 import {PaylinePayment} from "../payline-payment.js";
 import {PaylineOrderDetail} from "../payline-order-detail.js";
+import {PaylineChallengeInd} from "../payline-challenge-ind.js";
 
 class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public payment: PaylinePayment;
@@ -19,13 +20,13 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
   public notificationURL?: string;
   public selectedContractList?: { selectedContract: string }[];
   public secondSelectedContractList?: { selectedContract: string }[];
-  public privateDataList?: { [key: string]: string } = {}; // metadata
+  public privateDataList?: { privateData: {key: string, value: string}[] } = { privateData: [] }; // metadata
   public languageCode?: string;
   public customPaymentPageCode?: string;
   public buyer: PaylineBuyer;
   public owner?: PaylineOwner;
   public securityMode?: string;
-  public reccuring?: any;
+  public recurring?: any;
   public customPaymentTemplateURL: string;
   public contractNumberWalletList?: any;
   public merchantName?: string;
@@ -42,6 +43,7 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     this.order = new PaylineOrder();
     this.order.ref = orderRef;
     this.order.date = PaylineUtils.getPaylineNowDateFormat();
+    this.threeDSInfo = new PaylineThreeDSInfo();
   }
 
   public changeContractNumber(contractNumber: string, force: boolean = false): this {
@@ -104,6 +106,21 @@ class PaylineDoWebPaymentRequest extends PaylineBaseRequest {
     this.order.deliveryMode = deliveryMode.code;
     this.order.country = country;
     this.order.details = details;
+    return this;
+  }
+
+  public setMerchantName(merchantName: string): this {
+    this.merchantName = merchantName;
+    return this;
+  }
+
+  public setThreeDSInfo(challengeInd: PaylineChallengeInd): this {
+    this.threeDSInfo.challengeInd = challengeInd.code;
+    return this;
+  }
+
+  public setPrivateDataList(privateDataList: { privateData: {key: string, value: string}[] } ): this {
+    this.privateDataList = privateDataList;
     return this;
   }
 
