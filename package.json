@@ -30,9 +30,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "crypto-random-string": "4.0.0",
-    "moment-timezone": "0.5.35",
-    "soap": "0.43.0"
+    "crypto-random-string": "5.0.0",
+    "moment-timezone": "0.5.43",
+    "soap": "1.0.0"
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
@@ -48,6 +48,9 @@
     "reflect-metadata": "0.1.13",
     "ts-node": "8.8.1",
     "typescript": "4.6.3"
+  },
+  "overrides": {
+    "axios": "0.21.4"
   },
   "private": false
 }

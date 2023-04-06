@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions targetNamespace="http://impl.ws.payline.experian.com" xmlns:impl="http://impl.ws.payline.experian.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns1="http://obj.ws.payline.experian.com">
-	<wsdl:types>
-		<schema elementFormDefault="qualified" targetNamespace="http://impl.ws.payline.experian.com" xmlns="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://impl.ws.payline.experian.com" xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://obj.ws.payline.experian.com"/>
 			<element name="doWebPaymentRequest">
 				<complexType>
@@ -178,6 +178,7 @@
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="sequenceNumber" nillable="true" type="xsd:string"/>
 						<element name="media" nillable="true" type="xsd:string"/>
+						<element name="miscData" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -241,6 +242,7 @@
 						<element name="sequenceNumber" nillable="true" type="xsd:string"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element minOccurs="0" name="details" nillable="true" type="tns1:details"/>
+						<element name="miscData" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -1107,6 +1109,7 @@
 						<element minOccurs="0" name="virtualCvx" nillable="true" type="xsd:string"/>
 						<element minOccurs="0" name="token" nillable="true" type="xsd:string"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
+						<element minOccurs="0" name="sdkChallenge" nillable="true" type="tns1:sdkChallenge"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -1190,6 +1193,7 @@
 					</annotation>
                     <sequence>
                         <element name="version" nillable="true" type="xsd:string"/>
+						<element name="merchantKeyName" nillable="true" type="xsd:string"/>
                     </sequence>
 				</complexType>
 			</element>
@@ -1562,6 +1566,37 @@
 				</complexType>
 			</element>
 
+			<element name="prepareSessionRequest">
+				<complexType>
+					<annotation>
+						<documentation>
+							This element is the request for the
+							prepareSession method
+						</documentation>
+					</annotation>
+					<sequence>
+						<element name="version" nillable="false" type="xsd:string"/>
+						<element name="contractNumber" nillable="false" type="xsd:string"/>
+						<element name="orderRef" nillable="false" type="xsd:string"/>
+						<element name="miscData" nillable="false" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="prepareSessionResponse">
+				<complexType>
+					<annotation>
+						<documentation>
+							This element is the reponse from the
+							prepareSession method
+						</documentation>
+					</annotation>
+					<sequence>
+						<element name="result" nillable="false" type="tns1:result"/>
+						<element name="data" nillable="false" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+
 		</schema>
     <schema elementFormDefault="qualified" targetNamespace="http://obj.ws.payline.experian.com" xmlns="http://www.w3.org/2001/XMLSchema">
 			<complexType name="result">
@@ -1641,6 +1676,7 @@
 				<sequence>
 					<element name="keyId" nillable="false" type="xsd:integer"/>
 					<element name="modulus" nillable="false" type="xsd:string"/>
+					<element name="merchantKeyName" nillable="false" type="xsd:string"/>
 					<element name="publicExponent" nillable="false" type="xsd:string"/>
 					<element name="expirationDate" nillable="false" type="xsd:string"/>
                     <element name="cipher" nillable="true" type="xsd:string"/>
@@ -1834,6 +1870,11 @@
 					<element minOccurs="0" name="cardholder" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="token" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="paymentData" nillable="false" type="tns1:paymentData"/>
+					<element minOccurs="0" name="par" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="tokenRequestorCryptogram" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="tokenRequestorId" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="last4" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="panType" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 			<complexType name="buyer">
@@ -1861,6 +1902,7 @@
 					<element name="mobilePhone" nillable="true" type="xsd:string"/>
 					<element name="customerId" nillable="true" type="xsd:string"/>
 					<element name="legalStatus" nillable="true" type="xsd:string"/>
+					<element name="legalDocumentType" nillable="true" type="xsd:string"/>
 					<element name="legalDocument" nillable="true" type="xsd:string"/>
 					<element name="birthDate" nillable="true" type="xsd:string"/>
 					<element name="fingerprintID" nillable="true" type="xsd:string"/>
@@ -2872,997 +2914,1031 @@
                     <element name="deviceRenderOptionsUI" nillable="true" type="xsd:string"/>
                     <element name="appID" nillable="true" type="xsd:string"/>
                     <element name="ephemPubKey" nillable="true" type="xsd:string"/>
-                    <element name="maxTimeout" nillable="true" type="xsd:integer"/>
+                    <element name="maxTimeout" nillable="true" type="xsd:string"/>
                     <element name="referenceNumber" nillable="true" type="xsd:string"/>
                     <element name="transID" nillable="true" type="xsd:string"/>
                     <element name="encData" nillable="true" type="xsd:string"/>
                 </sequence>
             </complexType>
             <complexType name="merchantAuthentication">
+            <annotation>
+                <documentation>
+                    This element contains information about SDK.
+                </documentation>
+            </annotation>
+            <sequence>
+            <element name="method" nillable="true" type="xsd:string"/>
+            <element name="date" nillable="true" type="xsd:string"/>
+            </sequence>
+            </complexType>
+			<complexType name="sdkChallenge">
 				<annotation>
 					<documentation>
-						This element contains information about SDK.
+						This element contains information about SDK 3DS Challenge.
 					</documentation>
 				</annotation>
 				<sequence>
-					<element name="method" nillable="true" type="xsd:string"/>
-					<element name="date" nillable="true" type="xsd:string"/>
+					<element name="cardType" type="xsd:string"/>
+					<element name="threeDSServerTransID" type="xsd:string"/>
+					<element name="threeDSVersion" type="xsd:string"/>
+					<element name="authenticationType" type="xsd:string"/>
+					<element name="transStatus" type="xsd:string"/>
+					<element name="sdkTransID" type="xsd:string"/>
+					<element name="dsTransID" type="xsd:string"/>
+					<element name="acsTransID" type="xsd:string"/>
+					<element name="acsRenderingType" type="xsd:string"/>
+					<element name="acsReferenceNumber" type="xsd:string"/>
+					<element name="acsSignedContent" type="xsd:string"/>
+					<element name="acsOperatorID" type="xsd:string"/>
+					<element name="acsChallengeMandated" type="xsd:string"/>
 				</sequence>
 			</complexType>
 		</schema>
-	</wsdl:types>
-	<wsdl:message name="getTransactionDetailsRequest">
-		<wsdl:part name="parameters" element="impl:getTransactionDetailsRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doScheduledWalletPaymentRequest">
-		<wsdl:part name="parameters" element="impl:doScheduledWalletPaymentRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doDebitRequest">
-		<wsdl:part name="parameters" element="impl:doDebitRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doAuthorizationRedirectResponse">
-		<wsdl:part name="parameters" element="impl:doAuthorizationRedirectResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doScheduledWalletPaymentResponse">
-		<wsdl:part name="parameters" element="impl:doScheduledWalletPaymentResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doCaptureResponse">
-		<wsdl:part name="parameters" element="impl:doCaptureResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doRecurrentWalletPaymentRequest">
-		<wsdl:part name="parameters" element="impl:doRecurrentWalletPaymentRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWalletRequest">
-		<wsdl:part name="parameters" element="impl:getWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doAuthorizationResponse">
-		<wsdl:part name="parameters" element="impl:doAuthorizationResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getCardsResponse">
-		<wsdl:part name="parameters" element="impl:getCardsResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="createWebWalletRequest">
-		<wsdl:part name="parameters" element="impl:createWebWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getBalanceResponse">
-		<wsdl:part name="parameters" element="impl:getBalanceResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="verifyAuthenticationRequest">
-		<wsdl:part name="parameters" element="impl:verifyAuthenticationRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="verifyEnrollmentRequest">
-		<wsdl:part name="parameters" element="impl:verifyEnrollmentRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWebWalletRequest">
-		<wsdl:part name="parameters" element="impl:getWebWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="verifyAuthenticationResponse">
-		<wsdl:part name="parameters" element="impl:verifyAuthenticationResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doScoringChequeRequest">
-		<wsdl:part name="parameters" element="impl:doScoringChequeRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doBankTransferRequest">
-		<wsdl:part name="parameters" element="impl:doBankTransferRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="isRegisteredResponse">
-		<wsdl:part name="parameters" element="impl:isRegisteredResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doRefundRequest">
-		<wsdl:part name="parameters" element="impl:doRefundRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWebWalletResponse">
-		<wsdl:part name="parameters" element="impl:getWebWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getAlertDetailsRequest">
-		<wsdl:part name="parameters" element="impl:getAlertDetailsRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doAuthorizationRedirectRequest">
-		<wsdl:part name="parameters" element="impl:doAuthorizationRedirectRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getBalanceRequest">
-		<wsdl:part name="parameters" element="impl:getBalanceRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateWalletRequest">
-		<wsdl:part name="parameters" element="impl:updateWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doScoringChequeResponse">
-		<wsdl:part name="parameters" element="impl:doScoringChequeResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getBillingRecordResponse">
-		<wsdl:part name="parameters" element="impl:getBillingRecordResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getPaymentRecordRequest">
-		<wsdl:part name="parameters" element="impl:getPaymentRecordRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateWebWalletRequest">
-		<wsdl:part name="parameters" element="impl:updateWebWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="unBlockRequest">
-		<wsdl:part name="parameters" element="impl:unBlockRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="enableWalletRequest">
-		<wsdl:part name="parameters" element="impl:enableWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doImmediateWalletPaymentRequest">
-		<wsdl:part name="parameters" element="impl:doImmediateWalletPaymentRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateWalletResponse">
-		<wsdl:part name="parameters" element="impl:updateWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doImmediateWalletPaymentResponse">
-		<wsdl:part name="parameters" element="impl:doImmediateWalletPaymentResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doAuthorizationRequest">
-		<wsdl:part name="parameters" element="impl:doAuthorizationRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doWebPaymentRequest">
-		<wsdl:part name="parameters" element="impl:doWebPaymentRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWalletResponse">
-		<wsdl:part name="parameters" element="impl:getWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doDebitResponse">
-		<wsdl:part name="parameters" element="impl:doDebitResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateBillingRecordResponse">
-		<wsdl:part name="parameters" element="impl:updateBillingRecordResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doBankTransferResponse">
-		<wsdl:part name="parameters" element="impl:doBankTransferResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="disableWalletRequest">
-		<wsdl:part name="parameters" element="impl:disableWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getEncryptionKeyResponse">
-		<wsdl:part name="parameters" element="impl:getEncryptionKeyResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getMerchantSettingsRequest">
-		<wsdl:part name="parameters" element="impl:getMerchantSettingsRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="disableWalletResponse">
-		<wsdl:part name="parameters" element="impl:disableWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doRecurrentWalletPaymentResponse">
-		<wsdl:part name="parameters" element="impl:doRecurrentWalletPaymentResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="createWalletResponse">
-		<wsdl:part name="parameters" element="impl:createWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="manageWebWalletRequest">
-		<wsdl:part name="parameters" element="impl:manageWebWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doCreditResponse">
-		<wsdl:part name="parameters" element="impl:doCreditResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getPaymentRecordResponse">
-		<wsdl:part name="parameters" element="impl:getPaymentRecordResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="transactionsSearchRequest">
-		<wsdl:part name="parameters" element="impl:transactionsSearchRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateBillingRecordRequest">
-		<wsdl:part name="parameters" element="impl:updateBillingRecordRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getTokenResponse">
-		<wsdl:part name="parameters" element="impl:getTokenResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWebPaymentDetailsResponse">
-		<wsdl:part name="parameters" element="impl:getWebPaymentDetailsResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="verifyEnrollmentResponse">
-		<wsdl:part name="parameters" element="impl:verifyEnrollmentResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updatePaymentRecordRequest">
-		<wsdl:part name="parameters" element="impl:updatePaymentRecordRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doReAuthorizationRequest">
-		<wsdl:part name="parameters" element="impl:doReAuthorizationRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="createWalletRequest">
-		<wsdl:part name="parameters" element="impl:createWalletRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getEncryptionKeyRequest">
-		<wsdl:part name="parameters" element="impl:getEncryptionKeyRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doResetResponse">
-		<wsdl:part name="parameters" element="impl:doResetResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="manageWebWalletResponse">
-		<wsdl:part name="parameters" element="impl:manageWebWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="createWebWalletResponse">
-		<wsdl:part name="parameters" element="impl:createWebWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="unBlockResponse">
-		<wsdl:part name="parameters" element="impl:unBlockResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doReAuthorizationResponse">
-		<wsdl:part name="parameters" element="impl:doReAuthorizationResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doCreditRequest">
-		<wsdl:part name="parameters" element="impl:doCreditRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getTokenRequest">
-		<wsdl:part name="parameters" element="impl:getTokenRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doRefundResponse">
-		<wsdl:part name="parameters" element="impl:doRefundResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getTransactionDetailsResponse">
-		<wsdl:part name="parameters" element="impl:getTransactionDetailsResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getAlertDetailsResponse">
-		<wsdl:part name="parameters" element="impl:getAlertDetailsResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doCaptureRequest">
-		<wsdl:part name="parameters" element="impl:doCaptureRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getBillingRecordRequest">
-		<wsdl:part name="parameters" element="impl:getBillingRecordRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="isRegisteredRequest">
-		<wsdl:part name="parameters" element="impl:isRegisteredRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="disablePaymentRecordRequest">
-		<wsdl:part name="parameters" element="impl:disablePaymentRecordRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updateWebWalletResponse">
-		<wsdl:part name="parameters" element="impl:updateWebWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="updatePaymentRecordResponse">
-		<wsdl:part name="parameters" element="impl:updatePaymentRecordResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doWebPaymentResponse">
-		<wsdl:part name="parameters" element="impl:doWebPaymentResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getWebPaymentDetailsRequest">
-		<wsdl:part name="parameters" element="impl:getWebPaymentDetailsRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="doResetRequest">
-		<wsdl:part name="parameters" element="impl:doResetRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="enableWalletResponse">
-		<wsdl:part name="parameters" element="impl:enableWalletResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getMerchantSettingsResponse">
-		<wsdl:part name="parameters" element="impl:getMerchantSettingsResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="disablePaymentRecordResponse">
-		<wsdl:part name="parameters" element="impl:disablePaymentRecordResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="transactionsSearchResponse">
-		<wsdl:part name="parameters" element="impl:transactionsSearchResponse">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:message name="getCardsRequest">
-		<wsdl:part name="parameters" element="impl:getCardsRequest">
-		</wsdl:part>
-	</wsdl:message>
-	<wsdl:portType name="WebPaymentAPI">
-		<wsdl:operation name="doWebPayment">
-			<wsdl:input name="doWebPaymentRequest" message="impl:doWebPaymentRequest">
-			</wsdl:input>
-			<wsdl:output name="doWebPaymentResponse" message="impl:doWebPaymentResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getWebPaymentDetails">
-			<wsdl:input name="getWebPaymentDetailsRequest" message="impl:getWebPaymentDetailsRequest">
-			</wsdl:input>
-			<wsdl:output name="getWebPaymentDetailsResponse" message="impl:getWebPaymentDetailsResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="manageWebWallet">
-			<wsdl:input name="manageWebWalletRequest" message="impl:manageWebWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="manageWebWalletResponse" message="impl:manageWebWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="createWebWallet">
-			<wsdl:input name="createWebWalletRequest" message="impl:createWebWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="createWebWalletResponse" message="impl:createWebWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateWebWallet">
-			<wsdl:input name="updateWebWalletRequest" message="impl:updateWebWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="updateWebWalletResponse" message="impl:updateWebWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getWebWallet">
-			<wsdl:input name="getWebWalletRequest" message="impl:getWebWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="getWebWalletResponse" message="impl:getWebWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doAuthorizationRedirect">
-			<wsdl:input name="doAuthorizationRedirectRequest" message="impl:doAuthorizationRedirectRequest">
-			</wsdl:input>
-			<wsdl:output name="doAuthorizationRedirectResponse" message="impl:doAuthorizationRedirectResponse">
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:portType>
-	<wsdl:portType name="DirectPaymentAPI">
-		<wsdl:operation name="doAuthorization">
-			<wsdl:input name="doAuthorizationRequest" message="impl:doAuthorizationRequest">
-			</wsdl:input>
-			<wsdl:output name="doAuthorizationResponse" message="impl:doAuthorizationResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doCapture">
-			<wsdl:input name="doCaptureRequest" message="impl:doCaptureRequest">
-			</wsdl:input>
-			<wsdl:output name="doCaptureResponse" message="impl:doCaptureResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doReAuthorization">
-			<wsdl:input name="doReAuthorizationRequest" message="impl:doReAuthorizationRequest">
-			</wsdl:input>
-			<wsdl:output name="doReAuthorizationResponse" message="impl:doReAuthorizationResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doDebit">
-			<wsdl:input name="doDebitRequest" message="impl:doDebitRequest">
-			</wsdl:input>
-			<wsdl:output name="doDebitResponse" message="impl:doDebitResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doRefund">
-			<wsdl:input name="doRefundRequest" message="impl:doRefundRequest">
-			</wsdl:input>
-			<wsdl:output name="doRefundResponse" message="impl:doRefundResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doReset">
-			<wsdl:input name="doResetRequest" message="impl:doResetRequest">
-			</wsdl:input>
-			<wsdl:output name="doResetResponse" message="impl:doResetResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doCredit">
-			<wsdl:input name="doCreditRequest" message="impl:doCreditRequest">
-			</wsdl:input>
-			<wsdl:output name="doCreditResponse" message="impl:doCreditResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="createWallet">
-			<wsdl:input name="createWalletRequest" message="impl:createWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="createWalletResponse" message="impl:createWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateWallet">
-			<wsdl:input name="updateWalletRequest" message="impl:updateWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="updateWalletResponse" message="impl:updateWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getWallet">
-			<wsdl:input name="getWalletRequest" message="impl:getWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="getWalletResponse" message="impl:getWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getCards">
-			<wsdl:input name="getCardsRequest" message="impl:getCardsRequest">
-			</wsdl:input>
-			<wsdl:output name="getCardsResponse" message="impl:getCardsResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="disableWallet">
-			<wsdl:input name="disableWalletRequest" message="impl:disableWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="disableWalletResponse" message="impl:disableWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="enableWallet">
-			<wsdl:input name="enableWalletRequest" message="impl:enableWalletRequest">
-			</wsdl:input>
-			<wsdl:output name="enableWalletResponse" message="impl:enableWalletResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doImmediateWalletPayment">
-			<wsdl:input name="doImmediateWalletPaymentRequest" message="impl:doImmediateWalletPaymentRequest">
-			</wsdl:input>
-			<wsdl:output name="doImmediateWalletPaymentResponse" message="impl:doImmediateWalletPaymentResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doScheduledWalletPayment">
-			<wsdl:input name="doScheduledWalletPaymentRequest" message="impl:doScheduledWalletPaymentRequest">
-			</wsdl:input>
-			<wsdl:output name="doScheduledWalletPaymentResponse" message="impl:doScheduledWalletPaymentResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doRecurrentWalletPayment">
-			<wsdl:input name="doRecurrentWalletPaymentRequest" message="impl:doRecurrentWalletPaymentRequest">
-			</wsdl:input>
-			<wsdl:output name="doRecurrentWalletPaymentResponse" message="impl:doRecurrentWalletPaymentResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getPaymentRecord">
-			<wsdl:input name="getPaymentRecordRequest" message="impl:getPaymentRecordRequest">
-			</wsdl:input>
-			<wsdl:output name="getPaymentRecordResponse" message="impl:getPaymentRecordResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="disablePaymentRecord">
-			<wsdl:input name="disablePaymentRecordRequest" message="impl:disablePaymentRecordRequest">
-			</wsdl:input>
-			<wsdl:output name="disablePaymentRecordResponse" message="impl:disablePaymentRecordResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="verifyEnrollment">
-			<wsdl:input name="verifyEnrollmentRequest" message="impl:verifyEnrollmentRequest">
-			</wsdl:input>
-			<wsdl:output name="verifyEnrollmentResponse" message="impl:verifyEnrollmentResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="verifyAuthentication">
-			<wsdl:input name="verifyAuthenticationRequest" message="impl:verifyAuthenticationRequest">
-			</wsdl:input>
-			<wsdl:output name="verifyAuthenticationResponse" message="impl:verifyAuthenticationResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doScoringCheque">
-			<wsdl:input name="doScoringChequeRequest" message="impl:doScoringChequeRequest">
-			</wsdl:input>
-			<wsdl:output name="doScoringChequeResponse" message="impl:doScoringChequeResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getEncryptionKey">
-			<wsdl:input name="getEncryptionKeyRequest" message="impl:getEncryptionKeyRequest">
-			</wsdl:input>
-			<wsdl:output name="getEncryptionKeyResponse" message="impl:getEncryptionKeyResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getMerchantSettings">
-			<wsdl:input name="getMerchantSettingsRequest" message="impl:getMerchantSettingsRequest">
-			</wsdl:input>
-			<wsdl:output name="getMerchantSettingsResponse" message="impl:getMerchantSettingsResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getBalance">
-			<wsdl:input name="getBalanceRequest" message="impl:getBalanceRequest">
-			</wsdl:input>
-			<wsdl:output name="getBalanceResponse" message="impl:getBalanceResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getToken">
-			<wsdl:input message="impl:getTokenRequest">
-			</wsdl:input>
-			<wsdl:output message="impl:getTokenResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="unBlock">
-			<wsdl:input name="unBlockRequest" message="impl:unBlockRequest">
-			</wsdl:input>
-			<wsdl:output name="unBlockResponse" message="impl:unBlockResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updatePaymentRecord">
-			<wsdl:input name="updatePaymentRecordRequest" message="impl:updatePaymentRecordRequest">
-			</wsdl:input>
-			<wsdl:output name="updatePaymentRecordResponse" message="impl:updatePaymentRecordResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getBillingRecord">
-			<wsdl:input name="getBillingRecordRequest" message="impl:getBillingRecordRequest">
-			</wsdl:input>
-			<wsdl:output name="getBillingRecordResponse" message="impl:getBillingRecordResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateBillingRecord">
-			<wsdl:input name="updateBillingRecordRequest" message="impl:updateBillingRecordRequest">
-			</wsdl:input>
-			<wsdl:output name="updateBillingRecordResponse" message="impl:updateBillingRecordResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doBankTransfer">
-			<wsdl:input name="doBankTransferRequest" message="impl:doBankTransferRequest">
-			</wsdl:input>
-			<wsdl:output name="doBankTransferResponse" message="impl:doBankTransferResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="isRegistered">
-			<wsdl:input name="isRegisteredRequest" message="impl:isRegisteredRequest">
-			</wsdl:input>
-			<wsdl:output name="isRegisteredResponse" message="impl:isRegisteredResponse">
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:portType>
-	<wsdl:portType name="ExtendedAPI">
-		<wsdl:operation name="getTransactionDetails">
-			<wsdl:input name="getTransactionDetailsRequest" message="impl:getTransactionDetailsRequest">
-			</wsdl:input>
-			<wsdl:output name="getTransactionDetailsResponse" message="impl:getTransactionDetailsResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="transactionsSearch">
-			<wsdl:input name="transactionsSearchRequest" message="impl:transactionsSearchRequest">
-			</wsdl:input>
-			<wsdl:output name="transactionsSearchResponse" message="impl:transactionsSearchResponse">
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getAlertDetails">
-			<wsdl:input message="impl:getAlertDetailsRequest">
-			</wsdl:input>
-			<wsdl:output message="impl:getAlertDetailsResponse">
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:portType>
-	<wsdl:binding name="DirectPaymentAPISoapBinding" type="impl:DirectPaymentAPI">
-		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-		<wsdl:operation name="doAuthorization">
-			<wsdlsoap:operation soapAction="doAuthorization"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doCapture">
-			<wsdlsoap:operation soapAction="doCapture"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doReAuthorization">
-			<wsdlsoap:operation soapAction="doReAuthorization"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doDebit">
-			<wsdlsoap:operation soapAction="doDebit"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doRefund">
-			<wsdlsoap:operation soapAction="doRefund"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doReset">
-			<wsdlsoap:operation soapAction="doReset"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doCredit">
-			<wsdlsoap:operation soapAction="doCredit"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="createWallet">
-			<wsdlsoap:operation soapAction="createWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateWallet">
-			<wsdlsoap:operation soapAction="updateWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getWallet">
-			<wsdlsoap:operation soapAction="getWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getCards">
-			<wsdlsoap:operation soapAction="getCards"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="disableWallet">
-			<wsdlsoap:operation soapAction="disableWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="enableWallet">
-			<wsdlsoap:operation soapAction="enableWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doImmediateWalletPayment">
-			<wsdlsoap:operation soapAction="doImmediateWalletPayment"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doScheduledWalletPayment">
-			<wsdlsoap:operation soapAction="doScheduledWalletPayment"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doRecurrentWalletPayment">
-			<wsdlsoap:operation soapAction="doRecurrentWalletPayment"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getPaymentRecord">
-			<wsdlsoap:operation soapAction="getPaymentRecord"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="disablePaymentRecord">
-			<wsdlsoap:operation soapAction="disablePaymentRecord"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="verifyEnrollment">
-			<wsdlsoap:operation soapAction="verifyEnrollment"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="verifyAuthentication">
-			<wsdlsoap:operation soapAction="verifyAuthentication"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doScoringCheque">
-			<wsdlsoap:operation soapAction="doScoringCheque"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getEncryptionKey">
-			<wsdlsoap:operation soapAction="getEncryptionKey"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getMerchantSettings">
-			<wsdlsoap:operation soapAction="getMerchantSettings"/>
-			<wsdl:input name="getMerchantSettingsRequest">
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output name="getMerchantSettingsResponse">
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getBalance">
-			<wsdlsoap:operation soapAction="getBalance"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getToken">
-			<wsdlsoap:operation soapAction="getToken"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="unBlock">
-			<wsdlsoap:operation soapAction="unBlock"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updatePaymentRecord">
-			<wsdlsoap:operation soapAction="updatePaymentRecord"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getBillingRecord">
-			<wsdlsoap:operation soapAction="getBillingRecord"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateBillingRecord">
-			<wsdlsoap:operation soapAction="updateBillingRecord"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doBankTransfer">
-			<wsdlsoap:operation soapAction="doBankTransfer"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="isRegistered">
-			<wsdlsoap:operation soapAction="isRegistered"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:binding>
-	<wsdl:binding name="WebPaymentAPISoapBinding" type="impl:WebPaymentAPI">
-		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-		<wsdl:operation name="getWebPaymentDetails">
-			<wsdlsoap:operation soapAction="getWebPaymentDetails"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doWebPayment">
-			<wsdlsoap:operation soapAction="doWebPayment"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="manageWebWallet">
-			<wsdlsoap:operation soapAction="manageWebWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="createWebWallet">
-			<wsdlsoap:operation soapAction="createWebWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="updateWebWallet">
-			<wsdlsoap:operation soapAction="updateWebWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getWebWallet">
-			<wsdlsoap:operation soapAction="getWebWallet"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="doAuthorizationRedirect">
-			<wsdlsoap:operation soapAction="doAuthorizationRedirect"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:binding>
-	<wsdl:binding name="ExtendedAPISoapBinding" type="impl:ExtendedAPI">
-		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-		<wsdl:operation name="getTransactionDetails">
-			<wsdlsoap:operation soapAction="getTransactionDetails"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="transactionsSearch">
-			<wsdlsoap:operation soapAction="transactionsSearch"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="getAlertDetails">
-			<wsdlsoap:operation soapAction="getAlertDetails"/>
-			<wsdl:input>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
-	</wsdl:binding>
-	<wsdl:service name="WebPaymentAPI">
-		<wsdl:port name="WebPaymentAPI" binding="impl:WebPaymentAPISoapBinding">
-			<wsdlsoap:address location="https://services.payline.com/V4/services/WebPaymentAPI"/>
-		</wsdl:port>
-	</wsdl:service>
-	<wsdl:service name="ExtendedAPI">
-		<wsdl:port name="ExtendedAPI" binding="impl:ExtendedAPISoapBinding">
-			<wsdlsoap:address location="https://services.payline.com/V4/services/ExtendedAPI"/>
-		</wsdl:port>
-	</wsdl:service>
-	<wsdl:service name="DirectPaymentAPI">
-		<wsdl:port name="DirectPaymentAPI" binding="impl:DirectPaymentAPISoapBinding">
-			<wsdlsoap:address location="https://services.payline.com/V4/services/DirectPaymentAPI"/>
-		</wsdl:port>
-	</wsdl:service>
+  </wsdl:types>
+  <wsdl:message name="getTransactionDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getTransactionDetailsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doScheduledWalletPaymentRequest">
+    <wsdl:part name="parameters" element="impl:doScheduledWalletPaymentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doDebitRequest">
+    <wsdl:part name="parameters" element="impl:doDebitRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doAuthorizationRedirectResponse">
+    <wsdl:part name="parameters" element="impl:doAuthorizationRedirectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doScheduledWalletPaymentResponse">
+    <wsdl:part name="parameters" element="impl:doScheduledWalletPaymentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doCaptureResponse">
+    <wsdl:part name="parameters" element="impl:doCaptureResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doRecurrentWalletPaymentRequest">
+    <wsdl:part name="parameters" element="impl:doRecurrentWalletPaymentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWalletRequest">
+    <wsdl:part name="parameters" element="impl:getWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doAuthorizationResponse">
+    <wsdl:part name="parameters" element="impl:doAuthorizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCardsResponse">
+    <wsdl:part name="parameters" element="impl:getCardsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWebWalletRequest">
+    <wsdl:part name="parameters" element="impl:createWebWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBalanceResponse">
+    <wsdl:part name="parameters" element="impl:getBalanceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyAuthenticationRequest">
+    <wsdl:part name="parameters" element="impl:verifyAuthenticationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyEnrollmentRequest">
+    <wsdl:part name="parameters" element="impl:verifyEnrollmentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWebWalletRequest">
+    <wsdl:part name="parameters" element="impl:getWebWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyAuthenticationResponse">
+    <wsdl:part name="parameters" element="impl:verifyAuthenticationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doScoringChequeRequest">
+    <wsdl:part name="parameters" element="impl:doScoringChequeRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doBankTransferRequest">
+    <wsdl:part name="parameters" element="impl:doBankTransferRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prepareSessionRequest">
+    <wsdl:part name="parameters" element="impl:prepareSessionRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRegisteredResponse">
+    <wsdl:part name="parameters" element="impl:isRegisteredResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doRefundRequest">
+    <wsdl:part name="parameters" element="impl:doRefundRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWebWalletResponse">
+    <wsdl:part name="parameters" element="impl:getWebWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlertDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getAlertDetailsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doAuthorizationRedirectRequest">
+    <wsdl:part name="parameters" element="impl:doAuthorizationRedirectRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBalanceRequest">
+    <wsdl:part name="parameters" element="impl:getBalanceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateWalletRequest">
+    <wsdl:part name="parameters" element="impl:updateWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prepareSessionResponse">
+    <wsdl:part name="parameters" element="impl:prepareSessionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doScoringChequeResponse">
+    <wsdl:part name="parameters" element="impl:doScoringChequeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBillingRecordResponse">
+    <wsdl:part name="parameters" element="impl:getBillingRecordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPaymentRecordRequest">
+    <wsdl:part name="parameters" element="impl:getPaymentRecordRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateWebWalletRequest">
+    <wsdl:part name="parameters" element="impl:updateWebWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unBlockRequest">
+    <wsdl:part name="parameters" element="impl:unBlockRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableWalletRequest">
+    <wsdl:part name="parameters" element="impl:enableWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doImmediateWalletPaymentRequest">
+    <wsdl:part name="parameters" element="impl:doImmediateWalletPaymentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateWalletResponse">
+    <wsdl:part name="parameters" element="impl:updateWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doImmediateWalletPaymentResponse">
+    <wsdl:part name="parameters" element="impl:doImmediateWalletPaymentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doAuthorizationRequest">
+    <wsdl:part name="parameters" element="impl:doAuthorizationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doWebPaymentRequest">
+    <wsdl:part name="parameters" element="impl:doWebPaymentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWalletResponse">
+    <wsdl:part name="parameters" element="impl:getWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doDebitResponse">
+    <wsdl:part name="parameters" element="impl:doDebitResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateBillingRecordResponse">
+    <wsdl:part name="parameters" element="impl:updateBillingRecordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doBankTransferResponse">
+    <wsdl:part name="parameters" element="impl:doBankTransferResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableWalletRequest">
+    <wsdl:part name="parameters" element="impl:disableWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEncryptionKeyResponse">
+    <wsdl:part name="parameters" element="impl:getEncryptionKeyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMerchantSettingsRequest">
+    <wsdl:part name="parameters" element="impl:getMerchantSettingsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableWalletResponse">
+    <wsdl:part name="parameters" element="impl:disableWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doRecurrentWalletPaymentResponse">
+    <wsdl:part name="parameters" element="impl:doRecurrentWalletPaymentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWalletResponse">
+    <wsdl:part name="parameters" element="impl:createWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="manageWebWalletRequest">
+    <wsdl:part name="parameters" element="impl:manageWebWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doCreditResponse">
+    <wsdl:part name="parameters" element="impl:doCreditResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPaymentRecordResponse">
+    <wsdl:part name="parameters" element="impl:getPaymentRecordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transactionsSearchRequest">
+    <wsdl:part name="parameters" element="impl:transactionsSearchRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateBillingRecordRequest">
+    <wsdl:part name="parameters" element="impl:updateBillingRecordRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTokenResponse">
+    <wsdl:part name="parameters" element="impl:getTokenResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWebPaymentDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getWebPaymentDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyEnrollmentResponse">
+    <wsdl:part name="parameters" element="impl:verifyEnrollmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePaymentRecordRequest">
+    <wsdl:part name="parameters" element="impl:updatePaymentRecordRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doReAuthorizationRequest">
+    <wsdl:part name="parameters" element="impl:doReAuthorizationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWalletRequest">
+    <wsdl:part name="parameters" element="impl:createWalletRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEncryptionKeyRequest">
+    <wsdl:part name="parameters" element="impl:getEncryptionKeyRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doResetResponse">
+    <wsdl:part name="parameters" element="impl:doResetResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="manageWebWalletResponse">
+    <wsdl:part name="parameters" element="impl:manageWebWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWebWalletResponse">
+    <wsdl:part name="parameters" element="impl:createWebWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unBlockResponse">
+    <wsdl:part name="parameters" element="impl:unBlockResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doReAuthorizationResponse">
+    <wsdl:part name="parameters" element="impl:doReAuthorizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doCreditRequest">
+    <wsdl:part name="parameters" element="impl:doCreditRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTokenRequest">
+    <wsdl:part name="parameters" element="impl:getTokenRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doRefundResponse">
+    <wsdl:part name="parameters" element="impl:doRefundResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getTransactionDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlertDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getAlertDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doCaptureRequest">
+    <wsdl:part name="parameters" element="impl:doCaptureRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBillingRecordRequest">
+    <wsdl:part name="parameters" element="impl:getBillingRecordRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRegisteredRequest">
+    <wsdl:part name="parameters" element="impl:isRegisteredRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disablePaymentRecordRequest">
+    <wsdl:part name="parameters" element="impl:disablePaymentRecordRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateWebWalletResponse">
+    <wsdl:part name="parameters" element="impl:updateWebWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePaymentRecordResponse">
+    <wsdl:part name="parameters" element="impl:updatePaymentRecordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doWebPaymentResponse">
+    <wsdl:part name="parameters" element="impl:doWebPaymentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWebPaymentDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getWebPaymentDetailsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doResetRequest">
+    <wsdl:part name="parameters" element="impl:doResetRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableWalletResponse">
+    <wsdl:part name="parameters" element="impl:enableWalletResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMerchantSettingsResponse">
+    <wsdl:part name="parameters" element="impl:getMerchantSettingsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disablePaymentRecordResponse">
+    <wsdl:part name="parameters" element="impl:disablePaymentRecordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transactionsSearchResponse">
+    <wsdl:part name="parameters" element="impl:transactionsSearchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCardsRequest">
+    <wsdl:part name="parameters" element="impl:getCardsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WebPaymentAPI">
+    <wsdl:operation name="doWebPayment">
+      <wsdl:input name="doWebPaymentRequest" message="impl:doWebPaymentRequest">
+    </wsdl:input>
+      <wsdl:output name="doWebPaymentResponse" message="impl:doWebPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWebPaymentDetails">
+      <wsdl:input name="getWebPaymentDetailsRequest" message="impl:getWebPaymentDetailsRequest">
+    </wsdl:input>
+      <wsdl:output name="getWebPaymentDetailsResponse" message="impl:getWebPaymentDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="manageWebWallet">
+      <wsdl:input name="manageWebWalletRequest" message="impl:manageWebWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="manageWebWalletResponse" message="impl:manageWebWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createWebWallet">
+      <wsdl:input name="createWebWalletRequest" message="impl:createWebWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="createWebWalletResponse" message="impl:createWebWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWebWallet">
+      <wsdl:input name="updateWebWalletRequest" message="impl:updateWebWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="updateWebWalletResponse" message="impl:updateWebWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWebWallet">
+      <wsdl:input name="getWebWalletRequest" message="impl:getWebWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="getWebWalletResponse" message="impl:getWebWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doAuthorizationRedirect">
+      <wsdl:input name="doAuthorizationRedirectRequest" message="impl:doAuthorizationRedirectRequest">
+    </wsdl:input>
+      <wsdl:output name="doAuthorizationRedirectResponse" message="impl:doAuthorizationRedirectResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DirectPaymentAPI">
+    <wsdl:operation name="doAuthorization">
+      <wsdl:input name="doAuthorizationRequest" message="impl:doAuthorizationRequest">
+    </wsdl:input>
+      <wsdl:output name="doAuthorizationResponse" message="impl:doAuthorizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doCapture">
+      <wsdl:input name="doCaptureRequest" message="impl:doCaptureRequest">
+    </wsdl:input>
+      <wsdl:output name="doCaptureResponse" message="impl:doCaptureResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doReAuthorization">
+      <wsdl:input name="doReAuthorizationRequest" message="impl:doReAuthorizationRequest">
+    </wsdl:input>
+      <wsdl:output name="doReAuthorizationResponse" message="impl:doReAuthorizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDebit">
+      <wsdl:input name="doDebitRequest" message="impl:doDebitRequest">
+    </wsdl:input>
+      <wsdl:output name="doDebitResponse" message="impl:doDebitResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doRefund">
+      <wsdl:input name="doRefundRequest" message="impl:doRefundRequest">
+    </wsdl:input>
+      <wsdl:output name="doRefundResponse" message="impl:doRefundResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doReset">
+      <wsdl:input name="doResetRequest" message="impl:doResetRequest">
+    </wsdl:input>
+      <wsdl:output name="doResetResponse" message="impl:doResetResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doCredit">
+      <wsdl:input name="doCreditRequest" message="impl:doCreditRequest">
+    </wsdl:input>
+      <wsdl:output name="doCreditResponse" message="impl:doCreditResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createWallet">
+      <wsdl:input name="createWalletRequest" message="impl:createWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="createWalletResponse" message="impl:createWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWallet">
+      <wsdl:input name="updateWalletRequest" message="impl:updateWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="updateWalletResponse" message="impl:updateWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWallet">
+      <wsdl:input name="getWalletRequest" message="impl:getWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="getWalletResponse" message="impl:getWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCards">
+      <wsdl:input name="getCardsRequest" message="impl:getCardsRequest">
+    </wsdl:input>
+      <wsdl:output name="getCardsResponse" message="impl:getCardsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableWallet">
+      <wsdl:input name="disableWalletRequest" message="impl:disableWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="disableWalletResponse" message="impl:disableWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableWallet">
+      <wsdl:input name="enableWalletRequest" message="impl:enableWalletRequest">
+    </wsdl:input>
+      <wsdl:output name="enableWalletResponse" message="impl:enableWalletResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doImmediateWalletPayment">
+      <wsdl:input name="doImmediateWalletPaymentRequest" message="impl:doImmediateWalletPaymentRequest">
+    </wsdl:input>
+      <wsdl:output name="doImmediateWalletPaymentResponse" message="impl:doImmediateWalletPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doScheduledWalletPayment">
+      <wsdl:input name="doScheduledWalletPaymentRequest" message="impl:doScheduledWalletPaymentRequest">
+    </wsdl:input>
+      <wsdl:output name="doScheduledWalletPaymentResponse" message="impl:doScheduledWalletPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doRecurrentWalletPayment">
+      <wsdl:input name="doRecurrentWalletPaymentRequest" message="impl:doRecurrentWalletPaymentRequest">
+    </wsdl:input>
+      <wsdl:output name="doRecurrentWalletPaymentResponse" message="impl:doRecurrentWalletPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentRecord">
+      <wsdl:input name="getPaymentRecordRequest" message="impl:getPaymentRecordRequest">
+    </wsdl:input>
+      <wsdl:output name="getPaymentRecordResponse" message="impl:getPaymentRecordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disablePaymentRecord">
+      <wsdl:input name="disablePaymentRecordRequest" message="impl:disablePaymentRecordRequest">
+    </wsdl:input>
+      <wsdl:output name="disablePaymentRecordResponse" message="impl:disablePaymentRecordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyEnrollment">
+      <wsdl:input name="verifyEnrollmentRequest" message="impl:verifyEnrollmentRequest">
+    </wsdl:input>
+      <wsdl:output name="verifyEnrollmentResponse" message="impl:verifyEnrollmentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyAuthentication">
+      <wsdl:input name="verifyAuthenticationRequest" message="impl:verifyAuthenticationRequest">
+    </wsdl:input>
+      <wsdl:output name="verifyAuthenticationResponse" message="impl:verifyAuthenticationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doScoringCheque">
+      <wsdl:input name="doScoringChequeRequest" message="impl:doScoringChequeRequest">
+    </wsdl:input>
+      <wsdl:output name="doScoringChequeResponse" message="impl:doScoringChequeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEncryptionKey">
+      <wsdl:input name="getEncryptionKeyRequest" message="impl:getEncryptionKeyRequest">
+    </wsdl:input>
+      <wsdl:output name="getEncryptionKeyResponse" message="impl:getEncryptionKeyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMerchantSettings">
+      <wsdl:input name="getMerchantSettingsRequest" message="impl:getMerchantSettingsRequest">
+    </wsdl:input>
+      <wsdl:output name="getMerchantSettingsResponse" message="impl:getMerchantSettingsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <wsdl:input name="getBalanceRequest" message="impl:getBalanceRequest">
+    </wsdl:input>
+      <wsdl:output name="getBalanceResponse" message="impl:getBalanceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getToken">
+      <wsdl:input message="impl:getTokenRequest">
+    </wsdl:input>
+      <wsdl:output message="impl:getTokenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unBlock">
+      <wsdl:input name="unBlockRequest" message="impl:unBlockRequest">
+    </wsdl:input>
+      <wsdl:output name="unBlockResponse" message="impl:unBlockResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePaymentRecord">
+      <wsdl:input name="updatePaymentRecordRequest" message="impl:updatePaymentRecordRequest">
+    </wsdl:input>
+      <wsdl:output name="updatePaymentRecordResponse" message="impl:updatePaymentRecordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBillingRecord">
+      <wsdl:input name="getBillingRecordRequest" message="impl:getBillingRecordRequest">
+    </wsdl:input>
+      <wsdl:output name="getBillingRecordResponse" message="impl:getBillingRecordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBillingRecord">
+      <wsdl:input name="updateBillingRecordRequest" message="impl:updateBillingRecordRequest">
+    </wsdl:input>
+      <wsdl:output name="updateBillingRecordResponse" message="impl:updateBillingRecordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doBankTransfer">
+      <wsdl:input name="doBankTransferRequest" message="impl:doBankTransferRequest">
+    </wsdl:input>
+      <wsdl:output name="doBankTransferResponse" message="impl:doBankTransferResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistered">
+      <wsdl:input name="isRegisteredRequest" message="impl:isRegisteredRequest">
+    </wsdl:input>
+      <wsdl:output name="isRegisteredResponse" message="impl:isRegisteredResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prepareSession">
+      <wsdl:input name="prepareSessionRequest" message="impl:prepareSessionRequest">
+    </wsdl:input>
+      <wsdl:output name="prepareSessionResponse" message="impl:prepareSessionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ExtendedAPI">
+    <wsdl:operation name="getTransactionDetails">
+      <wsdl:input name="getTransactionDetailsRequest" message="impl:getTransactionDetailsRequest">
+    </wsdl:input>
+      <wsdl:output name="getTransactionDetailsResponse" message="impl:getTransactionDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionsSearch">
+      <wsdl:input name="transactionsSearchRequest" message="impl:transactionsSearchRequest">
+    </wsdl:input>
+      <wsdl:output name="transactionsSearchResponse" message="impl:transactionsSearchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertDetails">
+      <wsdl:input message="impl:getAlertDetailsRequest">
+    </wsdl:input>
+      <wsdl:output message="impl:getAlertDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DirectPaymentAPISoapBinding" type="impl:DirectPaymentAPI">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="doAuthorization">
+      <wsdlsoap:operation soapAction="doAuthorization"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doCapture">
+      <wsdlsoap:operation soapAction="doCapture"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doReAuthorization">
+      <wsdlsoap:operation soapAction="doReAuthorization"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDebit">
+      <wsdlsoap:operation soapAction="doDebit"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doRefund">
+      <wsdlsoap:operation soapAction="doRefund"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doReset">
+      <wsdlsoap:operation soapAction="doReset"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doCredit">
+      <wsdlsoap:operation soapAction="doCredit"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createWallet">
+      <wsdlsoap:operation soapAction="createWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWallet">
+      <wsdlsoap:operation soapAction="updateWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWallet">
+      <wsdlsoap:operation soapAction="getWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCards">
+      <wsdlsoap:operation soapAction="getCards"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableWallet">
+      <wsdlsoap:operation soapAction="disableWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableWallet">
+      <wsdlsoap:operation soapAction="enableWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doImmediateWalletPayment">
+      <wsdlsoap:operation soapAction="doImmediateWalletPayment"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doScheduledWalletPayment">
+      <wsdlsoap:operation soapAction="doScheduledWalletPayment"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doRecurrentWalletPayment">
+      <wsdlsoap:operation soapAction="doRecurrentWalletPayment"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentRecord">
+      <wsdlsoap:operation soapAction="getPaymentRecord"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disablePaymentRecord">
+      <wsdlsoap:operation soapAction="disablePaymentRecord"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyEnrollment">
+      <wsdlsoap:operation soapAction="verifyEnrollment"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyAuthentication">
+      <wsdlsoap:operation soapAction="verifyAuthentication"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doScoringCheque">
+      <wsdlsoap:operation soapAction="doScoringCheque"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEncryptionKey">
+      <wsdlsoap:operation soapAction="getEncryptionKey"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMerchantSettings">
+      <wsdlsoap:operation soapAction="getMerchantSettings"/>
+      <wsdl:input name="getMerchantSettingsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMerchantSettingsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <wsdlsoap:operation soapAction="getBalance"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getToken">
+      <wsdlsoap:operation soapAction="getToken"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unBlock">
+      <wsdlsoap:operation soapAction="unBlock"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePaymentRecord">
+      <wsdlsoap:operation soapAction="updatePaymentRecord"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBillingRecord">
+      <wsdlsoap:operation soapAction="getBillingRecord"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBillingRecord">
+      <wsdlsoap:operation soapAction="updateBillingRecord"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doBankTransfer">
+      <wsdlsoap:operation soapAction="doBankTransfer"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistered">
+      <wsdlsoap:operation soapAction="isRegistered"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prepareSession">
+      <wsdlsoap:operation soapAction="prepareSession"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebPaymentAPISoapBinding" type="impl:WebPaymentAPI">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getWebPaymentDetails">
+      <wsdlsoap:operation soapAction="getWebPaymentDetails"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doWebPayment">
+      <wsdlsoap:operation soapAction="doWebPayment"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="manageWebWallet">
+      <wsdlsoap:operation soapAction="manageWebWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createWebWallet">
+      <wsdlsoap:operation soapAction="createWebWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWebWallet">
+      <wsdlsoap:operation soapAction="updateWebWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWebWallet">
+      <wsdlsoap:operation soapAction="getWebWallet"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doAuthorizationRedirect">
+      <wsdlsoap:operation soapAction="doAuthorizationRedirect"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ExtendedAPISoapBinding" type="impl:ExtendedAPI">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getTransactionDetails">
+      <wsdlsoap:operation soapAction="getTransactionDetails"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionsSearch">
+      <wsdlsoap:operation soapAction="transactionsSearch"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertDetails">
+      <wsdlsoap:operation soapAction="getAlertDetails"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebPaymentAPI">
+    <wsdl:port name="WebPaymentAPI" binding="impl:WebPaymentAPISoapBinding">
+      <wsdlsoap:address location="https://services.payline.com/V4/services/WebPaymentAPI"/>
+    </wsdl:port>
+  </wsdl:service>
 </wsdl:definitions>
-
